@@ -34,39 +34,44 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
         if(step == 720) step = 0; // at step = 720, (step * PI / 360.0f) = 2PI, equivalent to 0
         step += 4;
 
-        drawRedCircle((radius-0.05f)/2, 0.2f, location);
+        AngleCalc angleCalc = (int i, double inc, float step) -> (float) (i * inc);
+        // Draw inner circle of the red padding
+        drawCrownPiece((radius-0.05f)/2, 0.2f, location, numParticlesInnerPadding, angleCalc, 0,255, 0, 0);
         drawGoldTop(0f, 0.5f, location);
-        drawGoldCircle(radius, 0, location);
+        // Draw gold circle for the crown base
+        angleCalc = (int i, double inc, float step) -> (float) ((i * inc) + (step * Math.PI / 360.0f));
+        drawCrownPiece(radius, 0, location, numParticlesBase, angleCalc, step, 255, 215, 0);
         drawCrownSpokes(radius, 0, location);
         drawCrownPadding(radius, 0, location);
     }
 
     // Draw each spoke of the crown, builds the spokes layer by layer
     private void drawCrownSpokes(float radius, float y, Location location) {
-        drawCrownJewels(radius, y, location); // lowest point of spoke has a jewel
+        AngleCalc angleCalc = (int i, double inc, float step) -> (float) ((i * inc) + (step * Math.PI / 360.0f));
+        // Draw crown jewels at the base of each spoke
+        drawCrownPiece(radius, y, location, numCrownSpokes, angleCalc, step, 0, 215, 255); // lowest point of spoke has a jewel
         radius += 0.09f;
         y += 0.2f;
-        drawCrownSpokesLayer(radius, y, location);
+        // Draws a single layer of all the crown spokes
+        drawCrownPiece(radius, y, location, numCrownSpokes, angleCalc, step, 255, 215, 0);
         y += 0.2f;
-        drawCrownSpokesLayer(radius, y, location);
+        drawCrownPiece(radius, y, location, numCrownSpokes, angleCalc, step, 255, 215, 0);
         radius -= 0.18f;
         y += 0.05f;
-        drawCrownSpokesLayer(radius, y, location);
+        drawCrownPiece(radius, y, location, numCrownSpokes, angleCalc, step, 255, 215, 0);
         radius -= 0.18f;
         y -= 0.05f;
-        drawCrownSpokesLayer(radius, y, location);
-        y -= 0.4f;
+        drawCrownPiece(radius, y, location, numCrownSpokes, angleCalc, step, 255, 215, 0);
     }
 
-    // Draws a single layer of all the crown spokes
-    private void drawCrownSpokesLayer(float radius, float y, Location location) {
-        for (int i = 0; i < numCrownSpokes; i++) {
-            double inc = (2 * Math.PI) / numCrownSpokes;
-            float angle = (float) ((i * inc) + (step * Math.PI / 360.0f));
+    private void drawCrownPiece(float radius, float y, Location location, int numParticles, AngleCalc angleCalculation, int step, int red, int green, int blue) {
+        for (int i = 0; i < numParticles; i++) {
+            double inc = (2 * Math.PI) / numParticles;
+            float angle = angleCalculation.calc(i, inc, step);
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 215, 0, location);
+            UtilParticles.display(red, green, blue, location);
             location.subtract(x, y, z);
         }
     }
@@ -75,61 +80,25 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
     private void drawCrownPadding(float radius, float y, Location location) {
         radius += 0.09f;
         y += 0.2f;
-        drawCrownPads(radius, y, location);
+        drawCrownPads(radius, y, location, numCrownSpokes, 255, 0, 0);
         y += 0.2f;
-        drawCrownPads(radius, y, location);
-        y -= 0.4f;
+        drawCrownPads(radius, y, location, numCrownSpokes, 255, 0, 0);
     }
 
-    private void drawCrownPads(float radius, float y, Location location) {
-        for (int i = 0; i < numCrownSpokes; i++) {
-            double inc = (2 * Math.PI) / numCrownSpokes;
-            float angle = (float) (((i * inc) + (step * Math.PI / 360.0f)) + (Math.PI) / numCrownSpokes);
+    private void drawCrownPads(float radius, float y, Location location, int numParticles, int red, int green, int blue) {
+        for (int i = 0; i < numParticles; i++) {
+            double inc = (2 * Math.PI) / numParticles;
+            float angle = (float) (((i * inc) + (step * Math.PI / 360.0f)) + (Math.PI) / numParticles);
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 0, 0, location);
+            UtilParticles.display(red, green, blue, location);
             location.subtract(x, y, z);
         }
     }
 
-    // Draw crown jewels at the base of each spoke
-    private void drawCrownJewels(float radius, float y, Location location) {
-        for (int i = 0; i < numCrownSpokes; i++) {
-            double inc = (2 * Math.PI) / numCrownSpokes;
-            float angle = (float) ((i * inc) + (step * Math.PI / 360.0f));
-            float x = MathUtils.cos(angle) * radius;
-            float z = MathUtils.sin(angle) * radius;
-            location.add(x, y, z);
-            UtilParticles.display(0, 215, 255, location);
-            location.subtract(x, y, z);
-        }
-    }
-
-    // Draw inner circle of the red padding
-    private void drawRedCircle(float radius, float y, Location location) {
-        for (int i = 0; i < numParticlesBase; i++) {
-            double inc = (2 * Math.PI) / numParticlesInnerPadding;
-            float angle = (float) (i * inc);
-            float x = MathUtils.cos(angle) * radius;
-            float z = MathUtils.sin(angle) * radius;
-            location.add(x, y, z);
-            UtilParticles.display(255, 0, 0, location);
-            location.subtract(x, y, z);
-        }
-    }
-
-    // Draw gold circle for the crown base
-    private void drawGoldCircle(float radius, float y, Location location) {
-        for (int i = 0; i < numParticlesBase; i++) {
-            double inc = (2 * Math.PI) / numParticlesBase;
-            float angle = (float) ((i * inc) + (step * Math.PI / 360.0f));
-            float x = MathUtils.cos(angle) * radius;
-            float z = MathUtils.sin(angle) * radius;
-            location.add(x, y, z);
-            UtilParticles.display(255, 215, 0, location);
-            location.subtract(x, y, z);
-        }
+    private interface AngleCalc {
+        float calc(int i, double inc, float step);
     }
 
     // Draw the crown topper
