@@ -30,7 +30,7 @@ public class ParticleEffectGardenNymph extends ParticleEffect {
         float radius = 0.35f; // refresh radius value
 
         // Rotation logic
-        if(step == 720) step = 0; // at step = 720, (step * PI / 360.0f) = 2PI, equivalent to 0
+        if(step >= 720) step = 0; // at step = 720, (step * PI / 360.0f) = 2PI, equivalent to 0
         step += 128;
 
         drawCircle(radius, 0, location);
