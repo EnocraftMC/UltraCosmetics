@@ -46,6 +46,8 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
         drawCrownPadding(radius, y, location, numCrownSpokes);
     }
 
+    // This is a private functional interface for Java lambda functions
+    // This is used to define different angle calculations depending on which part of the crown we are making
     private interface AngleCalc {
         float calc(double inc, float step, double modifier);
     }
