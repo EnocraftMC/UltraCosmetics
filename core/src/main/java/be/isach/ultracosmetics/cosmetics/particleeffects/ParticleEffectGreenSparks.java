@@ -36,7 +36,7 @@ public class ParticleEffectGreenSparks extends ParticleEffect {
                 up = true;
         }
         double inc = (2 * Math.PI) / 100;
-        double angle = step * inc;
+        double angle = (step % 720) * inc;
         Vector v = new Vector();
         v.setX(Math.cos(angle) * 1.1);
         v.setZ(Math.sin(angle) * 1.1);
