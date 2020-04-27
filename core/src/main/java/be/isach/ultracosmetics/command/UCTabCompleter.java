@@ -4,11 +4,14 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +31,7 @@ public class UCTabCompleter implements TabCompleter {
             if (args.length == 1) {
                 List<String> commands = new ArrayList<>();
                 for (SubCommand sc : uc.getCommandManager().getCommands()) {
-                    commands.add(sc.aliases[0]);
+                    commands.add(sc.commandname[0]);
                 }
 
                 Collections.sort(commands);
@@ -177,6 +180,80 @@ public class UCTabCompleter implements TabCompleter {
             }
         }
 
+        // Enocraft showcase command - TODO: Refactor structure of tab completer
+        if (cmd.getName().equalsIgnoreCase("ucs") || cmd.getName().equalsIgnoreCase("ultracosmeticsshowcase")) {
+            List<String> commands = new ArrayList<>();
+            switch(args.length) {
+                case 1:
+                    commands = new ArrayList<>();
+                    commands.add("clear");
+                    commands.add("equip");
+                    return commands;
+                case 2:
+                    if (args[0].equalsIgnoreCase("equip")) {
+                        commands = new ArrayList<>();
+                        for (Category category : Category.enabled()) {
+                            commands.add(category.toString().toLowerCase());
+                        }
+
+                        Collections.sort(commands);
+                        return StringUtil.copyPartialMatches(args[1], commands, new ArrayList<>());
+                    } else if (args[0].equalsIgnoreCase("clear")) {
+                        commands = new ArrayList<>();
+
+                        for (NPC npc : CitizensAPI.getNPCRegistry()) {
+                            commands.add(String.valueOf(npc.getId()));
+                        }
+
+                        Collections.sort(commands);
+
+                        return StringUtil.copyPartialMatches(args[1], commands, new ArrayList<>());
+                    }
+                case 3:
+                    if (args[0].equalsIgnoreCase("equip")) {
+                        String type = args[1].toUpperCase();
+                        try {
+                            Category cat = Category.valueOf(type);
+                            if (cat != null && cat.isEnabled()) {
+                                commands = new ArrayList<>();
+                                for (CosmeticType cosm : cat.getEnabled()) {
+                                    commands.add(cosm.toString().toLowerCase());
+                                }
+
+                                Collections.sort(commands);
+
+                                return StringUtil.copyPartialMatches(args[2], commands, new ArrayList<>());
+                            }
+                        } catch (Exception exc) {}
+                    } else if (args[0].equalsIgnoreCase("clear")) {
+                        commands = new ArrayList<>();
+
+                        for (Category category : Category.enabled()) {
+                            commands.add(category.toString().toLowerCase());
+                            commands.add("all"); // Add a clear all command for NPCs
+                        }
+
+                        Collections.sort(commands);
+
+                        return StringUtil.copyPartialMatches(args[2], commands, new ArrayList<>());
+                    }
+                case 4:
+                    if (args[0].equalsIgnoreCase("equip")) {
+                        commands = new ArrayList<>();
+
+                        for (NPC npc : CitizensAPI.getNPCRegistry()) {
+                            commands.add(String.valueOf(npc.getId()));
+                        }
+
+                        Collections.sort(commands);
+
+                        return StringUtil.copyPartialMatches(args[3], commands, new ArrayList<>());
+                    }
+                default:
+                    break;
+
+            }
+        }
         return null;
     }
 }

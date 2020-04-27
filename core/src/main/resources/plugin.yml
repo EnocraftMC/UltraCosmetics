@@ -1,6 +1,6 @@
-name: UltraCosmetics
+name: EnocraftCosmetics
 version: @VERSION@
-author: iSach
+authors: [iSach, SinfulMentality, LapCheung]
 load: POSTWORLD
 main: be.isach.ultracosmetics.UltraCosmetics
 api-version: 1.13
@@ -10,6 +10,12 @@ commands:
     aliases: [uc, cosmetics]
     description: Main Command of Ultra Cosmetics
     usage: /ultracosmetics
+  ultracosmeticsshowcase:
+    aliases: [ucs, cosmeticsshowcase]
+    description: Enocraft showcase command
+    usage: /ultracosmeticsshowcase
+    permission: ultracosmetics.*
+    permission-message: "This command is restricted to Enocraft staff only."
 permissions:
   ultracosmetics.*:
     children:
@@ -38,6 +44,7 @@ permissions:
       - ultracosmetics.command.toggle.others
       - ultracosmetics.command.treasure
       - ultracosmetics.command.purge
+      - ultracosmetics.command.renamepet
   ultracosmetics.command.clear:
     default: op
   ultracosmetics.command.toggle:
@@ -55,6 +62,8 @@ permissions:
   ultracosmetics.command.selfview:
     default: op
   ultracosmetics.command.purge:
+    default: op
+  ultracosmetics.command.renamepet:
     default: op
   ultracosmetics.gadgets.*:
     children:

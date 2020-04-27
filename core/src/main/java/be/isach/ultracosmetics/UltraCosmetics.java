@@ -1,7 +1,9 @@
 package be.isach.ultracosmetics;
 
 import be.isach.ultracosmetics.command.CommandManager;
+import be.isach.ultracosmetics.command.CommandShowcaseManager;
 import be.isach.ultracosmetics.config.MessageManager;
+import be.isach.ultracosmetics.config.NPCManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.config.TreasureManager;
 import be.isach.ultracosmetics.economy.EconomyHandler;
@@ -101,6 +103,16 @@ public class UltraCosmetics extends JavaPlugin {
     private CosmeticsProfileManager cosmeticsProfileManager;
 
     /**
+     * Showcase command manager.
+     */
+    private CommandShowcaseManager commandShowcaseManager;
+
+    /**
+     * NPC Manager.
+     */
+    private NPCManager npcManager;
+
+    /**
      * Called when plugin is enabled.
      */
     @Override
@@ -121,9 +133,6 @@ public class UltraCosmetics extends JavaPlugin {
         // Beginning of boot log. basic informations.
         getSmartLogger().write("-------------------------------------------------------------------");
         getSmartLogger().write("UltraCosmetics v" + getDescription().getVersion() + " is loading... (server: " + UltraCosmeticsData.get().getServerVersion().getName() + ")");
-        getSmartLogger().write("Thanks for downloading it!");
-        getSmartLogger().write("Plugin by iSach.");
-        getSmartLogger().write("Link: http://bit.ly/UltraCosmetics");
 
         // Set up config.
         setUpConfig();
@@ -222,6 +231,10 @@ public class UltraCosmetics extends JavaPlugin {
 
         GeneralUtil.printPermissions(this, SettingsManager.getConfig().getBoolean("Check-For-Updates"));
 
+        npcManager = new NPCManager(this);
+        commandShowcaseManager = new CommandShowcaseManager(this);
+        commandShowcaseManager.registerCommands(this);
+
         // Ended well :v
         getSmartLogger().write("UltraCosmetics successfully finished loading and is now enabled!");
         getSmartLogger().write("-------------------------------------------------------------------");
@@ -253,7 +266,6 @@ public class UltraCosmetics extends JavaPlugin {
      */
     private void registerListeners() {
         PluginManager pluginManager = Bukkit.getPluginManager();
-
         pluginManager.registerEvents(new PlayerListener(this), this);
         pluginManager.registerEvents(new MainListener(), this);
         pluginManager.registerEvents(new EntitySpawningManager(), this);
@@ -370,12 +382,9 @@ public class UltraCosmetics extends JavaPlugin {
         config.addDefault("Categories.Gadgets.Cooldown-In-ActionBar", true, "You wanna show the cooldown of", "current gadget in action bar?");
 
         if (!config.contains("Auto-Equip-Cosmetics")) {
-            config.createSection("Auto-Equip-Cosmetics", "[BETA!]",
-                    "Allows for players to auto-equip on join cosmetics they had before disconnecting.",
-                    "At the moment, only works while the server is up. Upon shutdown, the cosmetics saved states",
-                    "are reset! Doesn't support MySQL yet.");
+            config.createSection("Auto-Equip-Cosmetics", "",
+                    "Allows for players to auto-equip on join cosmetics they had before disconnecting.");
             config.set("Auto-Equip-Cosmetics.enabled", true);
-            //config.set("Auto-Equip-Cosmetics.on-join", true);
         }
 
         try {
@@ -471,5 +480,21 @@ public class UltraCosmetics extends JavaPlugin {
 
     public CosmeticsProfileManager getCosmeticsProfileManager() {
         return cosmeticsProfileManager;
+    }
+
+    /**
+     * Gets the NPC Manager.
+     *
+     * @return the NPC Manager.
+     */
+    public NPCManager getNPCManager() {
+        return npcManager;
+    }
+
+    /**
+     * @return Showcase Command Manager.
+     */
+    public CommandShowcaseManager getCommandShowcaseManager() {
+        return commandShowcaseManager;
     }
 }

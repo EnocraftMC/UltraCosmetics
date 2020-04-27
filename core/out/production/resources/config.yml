@@ -1,5 +1,5 @@
 # If set to true, will check for updates
-Check-For-Updates: true
+Check-For-Updates: false
 
 # List of the enabled categories.
 Categories-Enabled:
@@ -209,10 +209,10 @@ Fill-Blank-Slots-With-Item:
 # If true, money will be required
 # to rename a pet.
 Pets-Rename:
-  Enabled: false
-  Permission-Required: false
+  Enabled: true
+  Permission-Required: true
   Requires-Money:
-    Enabled: true
+    Enabled: false
     Price: 100
 
 # Do pets drop items? (not pickable up by players)

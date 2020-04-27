@@ -53,7 +53,7 @@ public class PlayerFollower implements Runnable, IPlayerFollower {
         PathEntity path = ((EntityInsentient) petEntity).getNavigation().a(targetLocation.getX() + 1, targetLocation.getY(), targetLocation.getZ() + 1, 1);
 
         try {
-            int distance = (int) Bukkit.getPlayer(player.getName()).getLocation().distance(petEntity.getBukkitEntity().getLocation());
+            int distance = (int) Bukkit.getEntity(player.getUniqueId()).getLocation().distance(petEntity.getBukkitEntity().getLocation());
 
             if (distance > 10 && petEntity.valid && player.isOnGround()) {
                 petEntity.setLocation(targetLocation.getBlockX(), targetLocation.getBlockY(), targetLocation.getBlockZ(), 0, 0);
