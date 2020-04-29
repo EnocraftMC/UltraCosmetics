@@ -1,7 +1,7 @@
 package be.isach.ultracosmetics;
 
-import be.isach.ultracosmetics.command.CommandManager;
-import be.isach.ultracosmetics.command.CommandShowcaseManager;
+import be.isach.ultracosmetics.command.ultracosmetics.CommandManager;
+import be.isach.ultracosmetics.command.showcase.CommandShowcaseManager;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.NPCManager;
 import be.isach.ultracosmetics.config.SettingsManager;
@@ -338,7 +338,7 @@ public class UltraCosmetics extends JavaPlugin {
         if (!config.contains("Categories.Suits")) {
             config.createSection("Categories.Suits");
             config.set("Categories.Suits.Main-Menu-Item", "299:0");
-            config.set("Categories.Suits.Go-Back-Arrow", true);
+            config.set("Categories.Suits.Go-Back-Arrow", false);
         }
 
         if (!config.contains("TreasureChests.Loots.Commands")) {
@@ -494,7 +494,7 @@ public class UltraCosmetics extends JavaPlugin {
     /**
      * @return Showcase Command Manager.
      */
-    public CommandShowcaseManager getCommandShowcaseManager() {
+    public CommandShowcaseManager getShowcaseCommandManager() {
         return commandShowcaseManager;
     }
 }

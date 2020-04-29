@@ -1,7 +1,9 @@
-package be.isach.ultracosmetics.command.subcommands;
+package be.isach.ultracosmetics.command.ultracosmetics.subcommands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
+import be.isach.ultracosmetics.command.ultracosmetics.UCTabCompleter;
+import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Bukkit;
@@ -9,6 +11,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Clear {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
@@ -23,16 +30,16 @@ public class SubCommandClear extends SubCommand {
     }
 
     @Override
-    protected void onExePlayer(Player sender, String... args) {
+    public void onExePlayer(Player sender, String... args) {
         common(sender, args);
     }
 
     @Override
-    protected void onExeConsole(ConsoleCommandSender sender, String... args) {
+    public void onExeConsole(ConsoleCommandSender sender, String... args) {
         common(sender, args);
     }
 
-    private void common(CommandSender sender, String... args) {
+    private void common(CommandSender sender, String... args) { // TODO: Restructure command syntaxes, put player at end
         Player receiver;
         if (args.length < 2) {
             sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Incorrect Usage. " + getUsage());
@@ -63,8 +70,37 @@ public class SubCommandClear extends SubCommand {
         else if (s.startsWith("mor")) up.removeMorph();
         else if (s.startsWith("mou")) up.removeMount();
         else if (s.startsWith("e")) up.removeEmote();
+        else if (s.startsWith("a")) up.clear(); // add an explicit "all" option as well
         else {
             sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "/uc clear <player> <type>\n" + ChatColor.RED + "" + ChatColor.BOLD + "Invalid Type.\n" + ChatColor.RED + "" + ChatColor.BOLD + "Available types: gadgets, particleeffects, pets, mounts, suits, hats, morphs");
+        }
+    }
+
+
+    @Override
+    public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {
+        //uc clear <player> [type]
+        List<String> tabSuggestion = new ArrayList<>();
+
+        // Check if the root argument doesn't match our command's alias, or if no additional arguments are given (shouldn't happen)
+        if(!Arrays.stream(getAliases()).anyMatch(args[0]::equals) || args.length < 2)
+            return tabSuggestion;
+
+        else if(args.length == 2) { // Tab-completing first argument: <player>
+            return UCTabCompleter.GetOnlinePlayers(sender);
+        }
+
+        else if(args.length == 3) { // Tab-completing second argument: [type]
+            for (Category category : Category.enabled()) {
+                tabSuggestion.add(category.toString().toLowerCase());
+                tabSuggestion.add("all");
+            }
+            Collections.sort(tabSuggestion);
+            return tabSuggestion;
+        }
+
+        else {
+            return tabSuggestion;
         }
     }
 }

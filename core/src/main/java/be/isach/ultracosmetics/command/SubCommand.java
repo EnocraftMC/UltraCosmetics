@@ -6,7 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A subcommand.
@@ -14,14 +16,14 @@ import java.util.Arrays;
  * @author iSach
  * @since 12-20-2015
  */
-public abstract class SubCommand {
+public abstract class SubCommand implements ITabCompletable {
 
-    String[] commandname;
+    String[] commandaliases;
     String description, permission, usage;
     private UltraCosmetics ultraCosmetics;
 
-    public SubCommand(String description, String permission, String usage, UltraCosmetics ultraCosmetics, String... commandname) {
-        this.commandname = commandname;
+    public SubCommand(String description, String permission, String usage, UltraCosmetics ultraCosmetics, String... commandaliases) {
+        this.commandaliases = commandaliases;
         this.description = description;
         this.permission = permission;
         this.usage = usage;
@@ -35,7 +37,7 @@ public abstract class SubCommand {
      * @return {@code true} if the String is an alias.
      */
     public boolean is(String arg) {
-        return Arrays.asList(commandname).contains(arg.toLowerCase());
+        return Arrays.asList(commandaliases).contains(arg.toLowerCase());
     }
 
     /**
@@ -66,12 +68,21 @@ public abstract class SubCommand {
     }
 
     /**
+     * Get the name of this command + any aliases.
+     *
+     * @return The possible names of this command.
+     */
+    public String[] getAliases() {
+        return commandaliases;
+    }
+
+    /**
      * Called when the sub command is executed by a player.
      *
      * @param sender The player who executed the command.
      * @param args   The args of the command. (Includes the subcommand alias).
      */
-    protected abstract void onExePlayer(Player sender, String... args);
+    public abstract void onExePlayer(Player sender, String... args);
 
     /**
      * Called when the sub command is executed by console.
@@ -79,7 +90,7 @@ public abstract class SubCommand {
      * @param sender The console sender who executed the command.
      * @param args   The args of the command. (Includes the subcommand alias).
      */
-    protected abstract void onExeConsole(ConsoleCommandSender sender, String... args);
+    public abstract void onExeConsole(ConsoleCommandSender sender, String... args);
 
     /**
      * Sent when player doesn't have permission to the command.
@@ -88,6 +99,18 @@ public abstract class SubCommand {
      */
     protected void notAllowed(CommandSender commandSender) {
         commandSender.sendMessage(MessageManager.getMessage("Not-Allowed-From-Console"));
+    }
+
+    /**
+     * Called when player is attempting to tab-complete a subcommand.
+     *
+     * @param sender the player
+     * @param args the command arguments
+     * @return the list of tab suggestions
+     */
+    @Override
+    public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {
+        return new ArrayList<>(); // returns an empty tab suggestion list
     }
 
     public UltraCosmetics getUltraCosmetics() {
