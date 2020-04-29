@@ -9,6 +9,7 @@ commands:
   ultracosmetics:
     aliases: [uc, cosmetics]
     description: Main Command of Ultra Cosmetics
+    permission: ultracosmetics.command.*
     usage: /ultracosmetics
   ultracosmeticsshowcase:
     aliases: [ucs, cosmeticsshowcase]
