@@ -131,7 +131,7 @@ public class SubCommandShowcaseRenamePet extends SubCommand {
         List<String> tabSuggestion = new ArrayList<>();
 
         // Check if the root argument doesn't match our command's alias, or if no additional arguments are given (shouldn't happen)
-        if(!Arrays.stream(getAliases()).anyMatch(args[0]::equals) || args.length < 2)
+        if(Arrays.stream(getAliases()).noneMatch(args[0]::equals) || args.length < 2)
             return tabSuggestion;
 
         else if(args.length == 2) { // Tab-completing first argument: [pet type]
