@@ -16,6 +16,57 @@ commands:
     usage: /ultracosmeticsshowcase
     permission: ultracosmetics.*
     permission-message: "This command is restricted to Enocraft staff only."
+  pets:
+    description: View and change your current pet
+    usage: /pets
+    permission: ultracosmetics.aliases.pets
+    permission-message: ""
+  effects:
+    description: View and change your current effect
+    usage: /effects
+    permission: ultracosmetics.aliases.effects
+    permission-message: ""
+  emotes:
+    description: View and change your current emote
+    usage: /emotes
+    permission: ultracosmetics.aliases.emotes
+    permission-message: ""
+  gadgets:
+    description: View and change your current gadget
+    usage: /gadgets
+    permission: ultracosmetics.aliases.gadgets
+    permission-message: ""
+  hats:
+    description: View and change your current hat
+    usage: /hats
+    permission: ultracosmetics.aliases.hats
+    permission-message: ""
+  suits:
+    decsription: View and change your current suit
+    usage: /suits
+    permission: ultracosmetics.aliases.suits
+    permission-message: ""
+  mounts:
+    description: View and change your current mount
+    usage: /mounts
+    permission: ultracosmetics.aliases.mounts
+    permission-message: ""
+  morphs:
+    description: View and change your current morph
+    usage: /morph
+    permission: ultracosmetics.aliases.morphs
+    permission-message: ""
+  buykey:
+    description: Buy a treasure chest key
+    usage: /buykey
+    permission: ultracosmetics.aliases.buykey
+    permission-message: ""
+  renamepet:
+    description: Rename your current pet
+    usage: /renamepet
+    permission: ultracosmetics.aliases.renamepet
+    permission-message: ""
+
 permissions:
   ultracosmetics.*:
     children:
@@ -557,3 +608,35 @@ permissions:
     default: op
   ultracosmetics.emotes.surprised:
     default: op
+  ultracosmetics.aliases.*:
+    children:
+      - ultracosmetics.aliases.pets
+      - ultracosmetics.aliases.emotes
+      - ultracosmetics.aliases.gadgets
+      - ultracosmetics.aliases.effects
+      - ultracosmetics.aliases.hats
+      - ultracosmetics.aliases.suits
+      - ultracosmetics.aliases.mounts
+      - ultracosmetics.aliases.renamepet
+      - ultracosmetics.aliases.morphs
+      - ultracosmetics.aliases.buykey
+    ultracosmetics.aliases.pets:
+      default: op
+    ultracosmetics.aliases.emotes:
+      default: op
+    ultracosmetics.aliases.gadgets:
+      default: op
+    ultracosmetics.aliases.effects:
+      default: op
+    ultracosmetics.aliases.hats:
+      default: op
+    ultracosmetics.aliases.suits:
+      default: op
+    ultracosmetics.aliases.mounts:
+      default: op
+    ultracosmetics.aliases.renamepet:
+      default: op
+    ultracosmetics.aliases.morphs:
+      default: op
+    ultracosmetics.aliases.buykey:
+      default: op
