@@ -6,7 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A subcommand.
@@ -97,6 +99,18 @@ public abstract class SubCommand implements ITabCompletable {
      */
     protected void notAllowed(CommandSender commandSender) {
         commandSender.sendMessage(MessageManager.getMessage("Not-Allowed-From-Console"));
+    }
+
+    /**
+     * Called when player is attempting to tab-complete a subcommand.
+     *
+     * @param sender the player
+     * @param args the command arguments
+     * @return the list of tab suggestions
+     */
+    @Override
+    public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {
+        return new ArrayList<>(); // returns an empty tab suggestion list
     }
 
     public UltraCosmetics getUltraCosmetics() {

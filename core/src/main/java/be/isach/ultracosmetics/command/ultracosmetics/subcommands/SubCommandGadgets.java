@@ -41,10 +41,4 @@ public class SubCommandGadgets extends SubCommand {
         notAllowed(sender);
     }
 
-    @Override
-    public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {
-        //uc gadgets
-        List<String> tabSuggestion = new ArrayList<>();
-        return tabSuggestion; // no need to tab-complete anything in gadgets
-    }
 }

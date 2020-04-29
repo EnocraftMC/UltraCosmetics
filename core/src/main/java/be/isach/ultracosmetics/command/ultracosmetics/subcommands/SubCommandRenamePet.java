@@ -81,7 +81,7 @@ public class SubCommandRenamePet extends SubCommand {
                 ChatColor.BOLD + "Cleared " + ChatColor.YELLOW + "all " + ChatColor.DARK_AQUA + "of " + up.getUsername() + "'s pet names");
     }
 
-    // Set the name of the specified pet type back to default TODO: Check for invalid pet type
+    // Set the name of the specified pet type back to default
     private void clearPetName(CommandSender sender, UltraPlayer up, PetType petType) {
         up.renamePetName(petType, "");
         sender.sendMessage(MessageManager.getMessage("Prefix") + ChatColor.DARK_AQUA + "" + ChatColor.BOLD +

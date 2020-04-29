@@ -40,10 +40,4 @@ public class SubCommandSelfView extends SubCommand {
         notAllowed(sender);
     }
 
-    @Override
-    public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {
-        //uc selfview
-        List<String> tabSuggestion = new ArrayList<>();
-        return tabSuggestion; // no need to tab-complete anything in selfview
-    }
 }
