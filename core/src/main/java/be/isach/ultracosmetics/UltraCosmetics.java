@@ -338,7 +338,7 @@ public class UltraCosmetics extends JavaPlugin {
         if (!config.contains("Categories.Suits")) {
             config.createSection("Categories.Suits");
             config.set("Categories.Suits.Main-Menu-Item", "299:0");
-            config.set("Categories.Suits.Go-Back-Arrow", true);
+            config.set("Categories.Suits.Go-Back-Arrow", false);
         }
 
         if (!config.contains("TreasureChests.Loots.Commands")) {

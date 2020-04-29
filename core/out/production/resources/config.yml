@@ -18,29 +18,29 @@ Categories-Enabled:
 Categories:
   Gadgets:
     Main-Menu-Item: '409:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
     # You wanna show the cooldown of current gadget in actionbar?
     Cooldown-In-ActionBar: true
   Particle-Effects:
     Main-Menu-Item: '399:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Mounts:
     Main-Menu-Item: '329:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Pets:
     Main-Menu-Item: '352:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Morphs:
     Main-Menu-Item: '334:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Hats:
     Main-Menu-Item: '314:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Suits:
     Main-Menu-Item: '299:0'
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Emotes:
-    Go-Back-Arrow: true
+    Go-Back-Arrow: false
   Clear-Cosmetic-Item: '152:0'
 
 # The economy that should be used. Supports 'Vault' or 'PlayerPoints'
@@ -247,8 +247,8 @@ Ammo-System-For-Gadgets:
 #
 # List for type: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 Menu-Item:
-  Give-On-Join: true
-  Give-On-Respawn: true
+  Give-On-Join: false
+  Give-On-Respawn: false
   Slot: 3
   Type: ENDER_CHEST
   Data: 0
@@ -261,7 +261,7 @@ No-Permission:
   Show-In-Lore: true
   Lore-Message-Yes: '&o&7Permission: &a&lYes!'
   Lore-Message-No: '&o&7Permission: &4&lNo!'
-  Dont-Show-Item: false
+  Dont-Show-Item: true
   Custom-Item:
     enabled: false
     Type: INK_SACK
