@@ -88,7 +88,7 @@ public class AnvilGUI implements IAnvilGUI {
     private void openInventory() {
         final ItemStack nametag = UCMaterial.NAME_TAG.parseItem();
         final ItemMeta nametagMeta = nametag.getItemMeta();
-        nametagMeta.setDisplayName(" "); //TODO: Find a workaround for resetting name back to default
+        nametagMeta.setDisplayName(" "); //TODO: Find a workaround for resetting name back to default, then set this as old pet name
         nametag.setItemMeta(nametagMeta);
         this.insert = nametag;
 
@@ -103,7 +103,7 @@ public class AnvilGUI implements IAnvilGUI {
         inventory.setItem(Slot.INPUT_LEFT, this.insert);
 
         containerId = getNextContainerId(player);
-        toNMS(player).playerConnection.sendPacket(new PacketPlayOutOpenWindow(containerId, Containers.ANVIL, new ChatMessage("Repair & Name")));
+        toNMS(player).playerConnection.sendPacket(new PacketPlayOutOpenWindow(containerId, Containers.ANVIL, new ChatMessage("Name (blank = default)")));
         toNMS(player).activeContainer = (Container) container;
         try { // Change a private field in net.minecraft.server using reflection
             Field field = (Container.class).getDeclaredField("windowId");
@@ -204,7 +204,7 @@ public class AnvilGUI implements IAnvilGUI {
             super(containerId, ((CraftPlayer) player).getHandle().inventory,
                     ContainerAccess.at(((CraftWorld) player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
             this.checkReachable = false;
-            setTitle(new ChatMessage("Repair & Name"));
+            setTitle(new ChatMessage("Name (blank = default)"));
         }
 
         @Override

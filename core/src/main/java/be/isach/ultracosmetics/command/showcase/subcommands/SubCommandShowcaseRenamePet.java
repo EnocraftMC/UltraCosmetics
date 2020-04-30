@@ -21,6 +21,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Rename NPC's pet {@link SubCommand SubCommand}.
+ *
+ * @author SinfulMentality
+ * @since 04-29-20
+ */
+
 public class SubCommandShowcaseRenamePet extends SubCommand {
 
     private UltraCosmetics plugin;

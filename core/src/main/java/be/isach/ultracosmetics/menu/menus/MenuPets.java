@@ -84,11 +84,14 @@ public class MenuPets extends CosmeticMenu<PetType> {
         Player p = ultraPlayer.getBukkitPlayer();
         if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
             UltraCosmeticsData.get().getVersionManager().newAnvilGUI(p, "", (player1 -> {}), (player2, text) -> {
+                text = text.strip();
                 if (SettingsManager.getConfig().getBoolean("Pets-Rename.Requires-Money.Enabled") && ultraCosmetics.getEconomyHandler().isUsingEconomy()) {
                     buyRenamePet(ultraPlayer, text);
                 } else {
                     ultraPlayer.setPetName(ultraPlayer.getCurrentPet().getType(), text);
                 }
+                ultraPlayer.getBukkitPlayer().sendMessage(MessageManager.getMessage("Prefix") + ChatColor.DARK_AQUA + "" + ChatColor.BOLD +
+                        "Successfully renamed " + ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage("Pets." + ultraPlayer.getCurrentPet().getType().getConfigName() + ".menu-name")) + ".");
                 return AAnvilGUI.Response.close();
             });
         } else {
@@ -104,6 +107,9 @@ public class MenuPets extends CosmeticMenu<PetType> {
                     } else {
                         ultraPlayer.setPetName(ultraPlayer.getCurrentPet().getType(), event.getName());
                     }
+                    ultraPlayer.getBukkitPlayer().sendMessage(MessageManager.getMessage("Prefix") + ChatColor.DARK_AQUA + "" + ChatColor.BOLD +
+                            "Successfully renamed " + ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage("Pets." + ultraPlayer.getCurrentPet().getType().getConfigName() + ".menu-name")) + ".");
+
                 } else {
                     event.setWillClose(false);
                     event.setWillDestroy(false);

@@ -20,6 +20,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Clear NPC's cosmetics {@link SubCommand SubCommand}.
+ *
+ * @author SinfulMentality
+ * @since 04-29-20
+ */
+
 public class SubCommandShowcaseClear extends SubCommand {
 
     private UltraCosmetics plugin;

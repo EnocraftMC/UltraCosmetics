@@ -22,6 +22,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Toggle NPC's cosmetics {@link SubCommand SubCommand}.
+ *
+ * @author SinfulMentality
+ * @since 04-29-20
+ */
+
 public class SubCommandShowcaseToggle extends SubCommand {
 
     private UltraCosmetics plugin;
