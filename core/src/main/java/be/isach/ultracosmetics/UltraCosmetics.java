@@ -253,12 +253,6 @@ public class UltraCosmetics extends JavaPlugin {
      */
     @Override
     public void onDisable() {
-        // TODO Purge Pet Names. (and Treasure Chests bugged holograms).
-        // TODO Use Metadatas for that!
-
-        for (CosmeticsProfile cp : cosmeticsProfileManager.getCosmeticsProfiles().values()) {
-            cp.save();
-        }
 
         if (playerManager != null) {
             playerManager.dispose();
