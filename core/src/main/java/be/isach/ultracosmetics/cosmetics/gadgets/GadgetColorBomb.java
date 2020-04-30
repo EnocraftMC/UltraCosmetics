@@ -64,7 +64,7 @@ public class GadgetColorBomb extends Gadget {
                     break;
             }
 
-            UtilParticles.display(effect, bomb.getLocation(), 1, 0.2f);
+            UtilParticles.drawParticlesWithSpeed(effect, bomb.getLocation(), 1, 0.2f);
 
             try {
                 for (Item item : items) {

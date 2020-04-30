@@ -89,7 +89,7 @@ public class MorphChicken extends Morph {
                     }.runTaskTimer(getUltraCosmetics(), 0, 4);
                     Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
                         for (Chicken chicken : chickens) {
-                            UtilParticles.display(Particles.LAVA, chicken.getLocation(), 10);
+                            UtilParticles.drawParticles(Particles.LAVA, chicken.getLocation(), 10);
                             chicken.remove();
                         }
                         chickens.clear();
@@ -120,7 +120,7 @@ public class MorphChicken extends Morph {
     @Override
     protected void onClear() {
         for (Chicken chicken : chickens) {
-            UtilParticles.display(Particles.LAVA, chicken.getLocation(), 10);
+            UtilParticles.drawParticles(Particles.LAVA, chicken.getLocation(), 10);
             chicken.remove();
         }
         chickens.clear();

@@ -67,7 +67,7 @@ public class GadgetBlackHole extends Gadget {
                     double x = Math.cos(angle) * ratio * radius;
                     double z = Math.sin(angle) * ratio * radius;
                     location.add(x, 0, z);
-                    UtilParticles.display(Particles.SMOKE_LARGE, location);
+                    UtilParticles.drawParticle(Particles.SMOKE_LARGE, location);
                     location.subtract(x, 0, z);
                 }
             }

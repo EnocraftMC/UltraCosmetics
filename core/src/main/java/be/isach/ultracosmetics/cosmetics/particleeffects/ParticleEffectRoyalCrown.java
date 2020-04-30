@@ -66,7 +66,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 215, 0, location);
+            UtilParticles.drawColoredDust(255, 215, 0, location);
             location.subtract(x, y, z);
         }
     }
@@ -88,7 +88,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 0, 0, location);
+            UtilParticles.drawColoredDust(255, 0, 0, location);
             location.subtract(x, y, z);
         }
     }
@@ -101,7 +101,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(0, 215, 255, location);
+            UtilParticles.drawColoredDust(0, 215, 255, location);
             location.subtract(x, y, z);
         }
     }
@@ -114,7 +114,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 0, 0, location);
+            UtilParticles.drawColoredDust(255, 0, 0, location);
             location.subtract(x, y, z);
         }
     }
@@ -127,7 +127,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(255, 215, 0, location);
+            UtilParticles.drawColoredDust(255, 215, 0, location);
             location.subtract(x, y, z);
         }
     }
@@ -135,7 +135,7 @@ public class ParticleEffectRoyalCrown extends ParticleEffect {
     // Draw the crown topper
     private void drawGoldTop(float radius, float y, Location location) {
         location.add(0, y + 0.2, 0);
-        UtilParticles.display(255, 215, 0, location);
+        UtilParticles.drawColoredDust(255, 215, 0, location);
         location.subtract(0, y + 0.2, 0);
     }
 

@@ -80,8 +80,8 @@ public class GadgetDiscoBall extends Gadget {
                 armorStand.setHelmet(ItemFactory.createColored("STAINED_GLASS", (byte) r.nextInt(15), " "));
             }
 
-            UtilParticles.display(Particles.SPELL, armorStand.getEyeLocation(), 1, 1f);
-            UtilParticles.display(Particles.SPELL_INSTANT, armorStand.getEyeLocation(), 1, 1f);
+            UtilParticles.drawParticlesWithSpeed(Particles.SPELL, armorStand.getEyeLocation(), 1, 1f);
+            UtilParticles.drawParticlesWithSpeed(Particles.SPELL_INSTANT, armorStand.getEyeLocation(), 1, 1f);
             Location loc = armorStand.getEyeLocation().add(MathUtils.randomDouble(-4, 4), MathUtils.randomDouble(-3, 3), MathUtils.randomDouble(-4, 4));
             Particles.NOTE.display(new Particles.NoteColor(r.nextInt(25)), loc, 128);
             double angle, angle2, x, x2, z, z2;
@@ -165,7 +165,7 @@ public class GadgetDiscoBall extends Gadget {
             step++;
             loc.add(v);
             if (dust) {
-                UtilParticles.display(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255), loc);
+                UtilParticles.drawColoredDust(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255), loc);
             }
             // location.getWorld().spigot().playEffect(loc, Effect.POTION_SWIRL);
         }

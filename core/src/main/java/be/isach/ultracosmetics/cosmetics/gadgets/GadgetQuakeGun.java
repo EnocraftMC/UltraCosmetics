@@ -49,7 +49,7 @@ public class GadgetQuakeGun extends Gadget {
                     if ((entity instanceof Player || entity instanceof Creature)
                             && entity != getPlayer()) {
                         MathUtils.applyVelocity(entity, new Vector(0, 1, 0));
-                        UtilParticles.display(Particles.FLAME, entity.getLocation(), 60, 0.4f);
+                        UtilParticles.drawParticlesWithSpeed(Particles.FLAME, entity.getLocation(), 60, 0.4f);
                         FireworkEffect.Builder builder = FireworkEffect.builder();
                         FireworkEffect effect = builder.flicker(false).trail(false).with(FireworkEffect.Type.BALL_LARGE)
                                 .withColor(Color.RED).withFade(Color.ORANGE).build();

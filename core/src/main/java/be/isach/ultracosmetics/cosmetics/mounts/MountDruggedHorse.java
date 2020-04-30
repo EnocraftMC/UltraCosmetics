@@ -44,10 +44,10 @@ public class MountDruggedHorse extends MountHorse {
     @Override
     public void onUpdate() {
         Location loc = entity.getLocation().add(0, 1, 0);
-        UtilParticles.display(Particles.FIREWORKS_SPARK, 0.4f, 0.2f, 0.4f, loc, 5);
-        UtilParticles.display(Particles.SPELL, 0.4f, 0.2f, 0.4f, loc, 5);
-        UtilParticles.display(Particles.SPELL_MOB_AMBIENT, 0.4f, 0.2f, 0.4f, loc, 5);
-        UtilParticles.display(Particles.SPELL_MOB, 5, 255, 0, loc);
+        UtilParticles.drawParticlesWithOffset(Particles.FIREWORKS_SPARK, 0.4f, 0.2f, 0.4f, loc, 5);
+        UtilParticles.drawParticlesWithOffset(Particles.SPELL, 0.4f, 0.2f, 0.4f, loc, 5);
+        UtilParticles.drawParticlesWithOffset(Particles.SPELL_MOB_AMBIENT, 0.4f, 0.2f, 0.4f, loc, 5);
+        UtilParticles.drawColoredParticle(Particles.SPELL_MOB, 5, 255, 0, loc);
     }
 
     @Override

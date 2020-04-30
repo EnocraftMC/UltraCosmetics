@@ -54,8 +54,8 @@ public class GadgetAntiGravity extends Gadget {
         if (as != null && as.isValid()) {
             if (running) {
                 as.setHeadPose(as.getHeadPose().add(0, 0.1, 0));
-                UtilParticles.display(Particles.PORTAL, 3f, 3f, 3f, as.getLocation(), 150);
-                UtilParticles.display(Particles.SPELL_WITCH, .3f, .3f, .3f, as.getEyeLocation(), 5);
+                UtilParticles.drawParticlesWithOffset(Particles.PORTAL, 3f, 3f, 3f, as.getLocation(), 150);
+                UtilParticles.drawParticlesWithOffset(Particles.SPELL_WITCH, .3f, .3f, .3f, as.getEyeLocation(), 5);
                 new BukkitRunnable() {
                     @Override
                     public void run() {

@@ -94,7 +94,7 @@ public class GadgetBatBlaster extends Gadget {
                         }
 
                         SoundUtil.playSound(bat.getLocation(), Sounds.BAT_HURT, 1.0f, 1.0f);
-                        UtilParticles.display(Particles.SMOKE_NORMAL, bat.getLocation());
+                        UtilParticles.drawParticle(Particles.SMOKE_NORMAL, bat.getLocation());
 
                         bat.remove();
                     });
@@ -116,7 +116,7 @@ public class GadgetBatBlaster extends Gadget {
                 for (Iterator<Bat> iterator = bats.iterator(); iterator.hasNext(); ) {
                     Bat bat = iterator.next();
                     if (bat.isValid()) {
-                        UtilParticles.display(Particles.SMOKE_LARGE, bat.getLocation());
+                        UtilParticles.drawParticle(Particles.SMOKE_LARGE, bat.getLocation());
                     }
                     bat.remove();
                     iterator.remove();
