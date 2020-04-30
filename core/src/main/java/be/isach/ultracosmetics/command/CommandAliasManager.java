@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Command manager.
+ * Command manager for all menu aliases.
  *
- * @author iSach
- * @since 12-20-2015
+ * @author SinfulMentality
+ * @since 04-29-20
  */
 public class CommandAliasManager implements CommandExecutor {
 
