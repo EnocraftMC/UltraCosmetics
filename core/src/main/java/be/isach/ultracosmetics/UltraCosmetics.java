@@ -1,5 +1,6 @@
 package be.isach.ultracosmetics;
 
+import be.isach.ultracosmetics.command.CommandAliasManager;
 import be.isach.ultracosmetics.command.ultracosmetics.CommandManager;
 import be.isach.ultracosmetics.command.showcase.CommandShowcaseManager;
 import be.isach.ultracosmetics.config.MessageManager;
@@ -111,6 +112,11 @@ public class UltraCosmetics extends JavaPlugin {
      * NPC Manager.
      */
     private NPCManager npcManager;
+
+    /**
+     * Command Alias Manager.
+     */
+    private CommandAliasManager commandAliasManager;
 
     /**
      * Called when plugin is enabled.
@@ -234,6 +240,8 @@ public class UltraCosmetics extends JavaPlugin {
         npcManager = new NPCManager(this);
         commandShowcaseManager = new CommandShowcaseManager(this);
         commandShowcaseManager.registerCommands(this);
+
+        commandAliasManager = new CommandAliasManager(this);
 
         // Ended well :v
         getSmartLogger().write("UltraCosmetics successfully finished loading and is now enabled!");
