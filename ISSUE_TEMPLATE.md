@@ -1,22 +1,16 @@
-### What steps will reproduce the issue?  
-1. 
-2. 
-3. 
+### What is the goal of this ticket?
+_Explain what you wish to achieve here._
 
-### What was supposed to happen?
+### Why is this a priority?
+_Explain the reason for this ticket here._
 
-### What happened? 
+### Are there any outstanding pre-requisites for this ticket?
+_List any outstanding pre-requisites preventing action being taken on this ticket._
+- [ ] Use GitHub checklists to keep track of completed pre-requisites
+- [ ] Link relevant issues if applicable.
 
-### What version of UltraCosmetics are you using?  
+### Acceptance criteria:
+- [ ] List the bare minimum requirements for this ticket to be considered "complete"
 
-### What Spigot version are you using? Paste the output of /version below.  
-
-### What plugins do you have installed? Paste the output of /plugins below.  
-
-### Are any errors related to UltraCosmetics in your console or logs? If so, paste below.  
-```
-paste
-error(s)
-here
-```
 ### Any additional information that you would like to provide that may be relevant to the issue?
+_Attach relevant files or screenshots if needed._
