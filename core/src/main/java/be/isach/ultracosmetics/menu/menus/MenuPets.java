@@ -89,6 +89,8 @@ public class MenuPets extends CosmeticMenu<PetType> {
                 } else {
                     ultraPlayer.setPetName(ultraPlayer.getCurrentPet().getType(), text);
                 }
+                ultraPlayer.getBukkitPlayer().sendMessage(MessageManager.getMessage("Prefix") + ChatColor.DARK_AQUA + "" + ChatColor.BOLD +
+                        "Successfully renamed " + ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage("Pets." + ultraPlayer.getCurrentPet().getType().getConfigName() + ".menu-name")) + ".");
                 return AAnvilGUI.Response.close();
             });
         } else {
@@ -104,6 +106,9 @@ public class MenuPets extends CosmeticMenu<PetType> {
                     } else {
                         ultraPlayer.setPetName(ultraPlayer.getCurrentPet().getType(), event.getName());
                     }
+                    ultraPlayer.getBukkitPlayer().sendMessage(MessageManager.getMessage("Prefix") + ChatColor.DARK_AQUA + "" + ChatColor.BOLD +
+                            "Successfully renamed " + ChatColor.translateAlternateColorCodes('&', MessageManager.getMessage("Pets." + ultraPlayer.getCurrentPet().getType().getConfigName() + ".menu-name")) + ".");
+
                 } else {
                     event.setWillClose(false);
                     event.setWillDestroy(false);

@@ -17,10 +17,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Clear {@link SubCommand SubCommand}.
+ * Rename pet {@link SubCommand SubCommand}.
  *
- * @author iSach
- * @since 12-22-2015
+ * @author SinfulMentality
+ * @since 04-29-20
  */
 public class SubCommandRenamePet extends SubCommand {
 
