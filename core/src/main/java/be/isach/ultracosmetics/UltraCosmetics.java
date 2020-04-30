@@ -1,8 +1,8 @@
 package be.isach.ultracosmetics;
 
 import be.isach.ultracosmetics.command.CommandAliasManager;
-import be.isach.ultracosmetics.command.ultracosmetics.CommandManager;
 import be.isach.ultracosmetics.command.showcase.CommandShowcaseManager;
+import be.isach.ultracosmetics.command.ultracosmetics.CommandManager;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.NPCManager;
 import be.isach.ultracosmetics.config.SettingsManager;
@@ -19,7 +19,6 @@ import be.isach.ultracosmetics.mysql.MySqlConnectionManager;
 import be.isach.ultracosmetics.placeholderapi.PlaceholderHook;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
-import be.isach.ultracosmetics.player.profile.CosmeticsProfile;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfileManager;
 import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldChecker;

@@ -3,12 +3,10 @@ package be.isach.ultracosmetics.player.profile;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.SettingsManager;
-import be.isach.ultracosmetics.cosmetics.mounts.Mount;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.type.*;
 import be.isach.ultracosmetics.log.SmartLogger;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.Arrays;
