@@ -723,12 +723,13 @@ public enum Particles {
      * @param color  Color of the particle
      * @param center Center location of the effect
      * @param range  Range of the visibility
+     * @param size   Size of the particle, depending on the particle type this could also affect the animation speed of the particle
      * @throws ParticleVersionException If the particle effect is not supported by the server version
      * @throws ParticleColorException   If the particle effect is not colorable or the color type is incorrect
      * @see ParticlePacket#ParticlePacket(Particles, ParticleColor, boolean)
      * @see ParticlePacket#sendTo(Location, double)
      */
-    public void display(ParticleColor color, Location center, double range, int size) throws ParticleVersionException, ParticleColorException {
+    public void display(ParticleColor color, Location center, double range, float size) throws ParticleVersionException, ParticleColorException {
         if (!isSupported()) {
             throw new ParticleVersionException("This particle effect is not supported by your server version");
         }
@@ -1333,7 +1334,7 @@ public enum Particles {
         private final boolean longDistance;
         private final ParticleData data;
         private Object packet;
-        private int size = 1;
+        private float size = 1f;
 
         /**
          * Construct a new particle packet
@@ -1406,7 +1407,7 @@ public enum Particles {
          * @param size         The desired size of the particle, note depending on the particle this also affects the animation speed
          * @see #ParticleEffect(Particles, float, float, float, float, int, boolean, ParticleData)
          */
-        public ParticlePacket(Particles effect, ParticleColor color, boolean longDistance, int size) {
+        public ParticlePacket(Particles effect, ParticleColor color, boolean longDistance, float size) {
             this(effect, color.getValueX(), color.getValueY(), color.getValueZ(), 1, 0, longDistance, null);
             this.size = size;
             if (effect == Particles.REDSTONE && color instanceof OrdinaryColor && ((OrdinaryColor) color).getRed() == 0) {

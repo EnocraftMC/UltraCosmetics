@@ -92,7 +92,7 @@ public class UtilParticles {
             effect.display(new Particles.OrdinaryColor(red, green, blue), location, DEF_RADIUS);
     }
 
-    public static void drawColoredParticlesWithSize(Particles effect, int red, int green, int blue, Location location, int amount, int size) {
+    public static void drawColoredParticlesWithSize(Particles effect, int red, int green, int blue, Location location, int amount, float size) {
         for (int i = 0; i < amount; i++)
             effect.display(new Particles.OrdinaryColor(red, green, blue), location, DEF_RADIUS, size);
     }
@@ -105,7 +105,7 @@ public class UtilParticles {
         drawColoredParticles(Particles.REDSTONE, red, green, blue, location, 1);
     }
 
-    public static void drawColoredDustWithSize(int red, int green, int blue, Location location, int size) {
+    public static void drawColoredDustWithSize(int red, int green, int blue, Location location, float size) {
         drawColoredParticlesWithSize(Particles.REDSTONE, red, green, blue, location, 1, size);
     }
 }
