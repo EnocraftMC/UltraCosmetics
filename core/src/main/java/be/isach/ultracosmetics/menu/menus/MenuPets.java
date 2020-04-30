@@ -84,6 +84,7 @@ public class MenuPets extends CosmeticMenu<PetType> {
         Player p = ultraPlayer.getBukkitPlayer();
         if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
             UltraCosmeticsData.get().getVersionManager().newAnvilGUI(p, "", (player1 -> {}), (player2, text) -> {
+                text = text.strip();
                 if (SettingsManager.getConfig().getBoolean("Pets-Rename.Requires-Money.Enabled") && ultraCosmetics.getEconomyHandler().isUsingEconomy()) {
                     buyRenamePet(ultraPlayer, text);
                 } else {
