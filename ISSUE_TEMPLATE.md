@@ -2,10 +2,10 @@
 _Explain what you wish to achieve here._
 
 ### Why is this a priority?
-_Explain the reason for this ticket here._
+Explain the reason for this ticket here.
 
 ### Are there any outstanding pre-requisites for this ticket?
-_List any outstanding pre-requisites preventing action being taken on this ticket._
+List any outstanding pre-requisites preventing action being taken on this ticket.
 - [ ] Use GitHub checklists to keep track of completed pre-requisites
 - [ ] Link relevant issues if applicable.
 
@@ -13,4 +13,4 @@ _List any outstanding pre-requisites preventing action being taken on this ticke
 - [ ] List the bare minimum requirements for this ticket to be considered "complete"
 
 ### Any additional information that you would like to provide that may be relevant to the issue?
-_Attach relevant files or screenshots if needed._
+Attach relevant files or screenshots if needed.
