@@ -207,6 +207,7 @@ public class MessageManager {
         addMessage("Particle-Effects.GardenNymph.name", "&e&lGarden Nymph");
         addMessage("Particle-Effects.RainbowBubbles.name", "&e&lRainbow Bubbles");
         addMessage("Particle-Effects.LavaCloud.name", "&c&lLava Cloud");
+        addMessage("Particle-Effects.MoltenWalk.name", "&4&lMolten Walk");
 
         // PETS
         addMessage("Pets.Piggy.menu-name", "&d&lPiggy");

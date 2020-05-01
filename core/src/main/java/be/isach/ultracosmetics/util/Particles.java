@@ -210,6 +210,14 @@ public enum Particles {
      */
     DRIP_LAVA("dripLava", 19, -1),
     /**
+     * A particle effect which is displayed when lava drips from a BLOCK:
+     * <ul>
+     * <li>It looks like an orange drip
+     * <li>The speed value has no influence on this particle effect
+     * </ul>
+     */
+    FALLING_LAVA("fallingLava", 40, -1),
+    /**
      * A particle effect which is displayed when attacking a villager in a village:
      * <ul>
      * <li>It looks like a cracked gray heart

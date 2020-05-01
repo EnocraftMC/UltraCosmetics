@@ -83,5 +83,6 @@ public class ParticleEffectType extends CosmeticMatType<ParticleEffect> {
         new ParticleEffectType("ultracosmetics.particleeffects.gardennymph", "GardenNymph", 2, Particles.VILLAGER_HAPPY, UCMaterial.BONE_MEAL, ParticleEffectGardenNymph.class, "&e&oTurn a new leaf.", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.rainbowbubbles", "RainbowBubbles", 2, Particles.SPELL_MOB, UCMaterial.PUFFERFISH, ParticleEffectRainbowBubbles.class, "&e&oC'mon you, let's dance!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.lavacloud", "LavaCloud", 2, Particles.DRIP_LAVA, UCMaterial.BLAZE_POWDER, ParticleEffectLavaCloud.class, "&7&oThe weather forecast\n&7&odidn't tell me about this.", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.moltenwalk", "MoltenWalk", 2, Particles.DRIP_LAVA, UCMaterial.MAGMA_CREAM, ParticleEffectMoltenWalk.class, "&7&oThe floor is lava!", ServerVersion.v1_8_R1);
     }
 }
