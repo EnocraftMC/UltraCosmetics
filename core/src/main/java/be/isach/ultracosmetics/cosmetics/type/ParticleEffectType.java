@@ -86,5 +86,6 @@ public class ParticleEffectType extends CosmeticMatType<ParticleEffect> {
         new ParticleEffectType("ultracosmetics.particleeffects.moltenwalk", "MoltenWalk", 2, Particles.DRIP_LAVA, UCMaterial.MAGMA_CREAM, ParticleEffectMoltenWalk.class, "&7&oThe floor is lava!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.wounded", "Wounded", 2, Particles.HEART, UCMaterial.FIRE_CORAL, ParticleEffectWounded.class, "&7&o'Tis but a scratch...", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.AFK", "AFK", 80, Particles.BARRIER, UCMaterial.BARRIER, ParticleEffectAFK.class, "&7&oBrb playing Roblox.", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.swampmonster", "SwampMonster", 1, Particles.SLIME, UCMaterial.SLIME_BALL, ParticleEffectSwampMonster.class, "&7&oWhat are you doing in my swamp?", ServerVersion.v1_8_R1);
     }
 }

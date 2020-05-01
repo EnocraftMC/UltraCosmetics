@@ -52,7 +52,8 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                         && getType() != ParticleEffectType.valueOf("santahat")
                         && getType() != ParticleEffectType.valueOf("flamefairy")
                         && getType() != ParticleEffectType.valueOf("enderaura")
-                        && getType() != ParticleEffectType.valueOf("moltenwalk")) {
+                        && getType() != ParticleEffectType.valueOf("moltenwalk")
+                        && getType() != ParticleEffectType.valueOf("swampmonster")) {
                     if (!isMoving() || !stoponMove)
                         onUpdate();
                     if (isMoving()) {

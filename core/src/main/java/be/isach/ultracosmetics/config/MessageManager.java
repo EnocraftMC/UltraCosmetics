@@ -210,6 +210,7 @@ public class MessageManager {
         addMessage("Particle-Effects.MoltenWalk.name", "&4&lMolten Walk");
         addMessage("Particle-Effects.Wounded.name", "&4&lWounded");
         addMessage("Particle-Effects.AFK.name", "&7&l>>AFK<<");
+        addMessage("Particle-Effects.SwampMonster.name", "&a&lSwamp Monster");
 
         // PETS
         addMessage("Pets.Piggy.menu-name", "&d&lPiggy");
