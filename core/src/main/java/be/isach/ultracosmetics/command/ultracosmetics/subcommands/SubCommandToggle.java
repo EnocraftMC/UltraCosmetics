@@ -68,7 +68,7 @@ public class SubCommandToggle extends SubCommand {
             Category category = (Category) categories[0];
             try {
                 UltraPlayer other = getUltraCosmetics().getPlayerManager().getUltraPlayer(Bukkit.getPlayer(args[1]));
-                if (other.getCosmetic(category) != null) {
+                if (other.getCosmetic(category) != null && other.getCosmetic(category).getType().getConfigName().equalsIgnoreCase(cosm)) {
                     if (category == Category.SUITS) {
                         try {
                             ArmorSlot armorSlot = ArmorSlot.getByName(args[2].split(":")[1]);
