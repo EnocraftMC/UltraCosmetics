@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.Particles;
 import be.isach.ultracosmetics.util.UtilParticles;
 import org.bukkit.Location;
-import org.bukkit.util.Vector;
 
 /**
  * Represents an instance of molten walk particles summoned by a player.

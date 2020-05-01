@@ -10,7 +10,6 @@ import be.isach.ultracosmetics.util.UtilParticles;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 /**
  * Represents an instance of wounded particles summoned by a player.

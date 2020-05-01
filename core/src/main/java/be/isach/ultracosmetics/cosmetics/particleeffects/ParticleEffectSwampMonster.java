@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.util.UCMaterial;
 import be.isach.ultracosmetics.util.UtilParticles;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.util.Vector;
 
 /**
  * Represents an instance of swamp monster particles summoned by a player.
