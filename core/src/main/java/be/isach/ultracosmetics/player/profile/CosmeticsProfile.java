@@ -7,9 +7,9 @@ import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.type.*;
 import be.isach.ultracosmetics.log.SmartLogger;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -227,6 +227,9 @@ public class CosmeticsProfile {
     public void saveToFile() {
         SettingsManager settingsManager = SettingsManager.getData(uuid);
 
+        // Update the UltraPlayer's cosmetic profile to match current UltraPlayer's settings
+        updateCosmeticsProfile(ultraPlayer);
+
         settingsManager.set("enabled.gadget", enabledGadget != null ? enabledGadget.getConfigName() : "none");
         settingsManager.set("enabled.effect", enabledEffect != null ? enabledEffect.getConfigName() : "none");
         settingsManager.set("enabled.emote", enabledEmote != null ? enabledEmote.getConfigName() : "none");
@@ -245,6 +248,64 @@ public class CosmeticsProfile {
             settingsManager.set("enabled.suit." + slot.toString().toLowerCase(), enabledSuitPart != null ? enabledSuitPart.getConfigName() : "none");
         }
     }
+
+    /** Updates the CosmeticProfile attached to this UltraPlayer
+     *
+     * @param ultraPlayer the UltraPlayer
+     */
+    private void updateCosmeticsProfile(UltraPlayer ultraPlayer) {
+        if (ultraPlayer != null) {
+            updatePet(ultraPlayer);
+            updateEffect(ultraPlayer);
+            updateEmote(ultraPlayer);
+            updateGadget(ultraPlayer);
+            updateHat(ultraPlayer);
+            updateMorph(ultraPlayer);
+            updateMount(ultraPlayer);
+            updateSuit(ultraPlayer);
+        }
+    }
+
+    /**
+     *  Helper functions for updateCosmeticsProfile
+     */
+    private void updatePet(UltraPlayer ultraPlayer) {
+        this.enabledPet = (ultraPlayer.getCurrentPet() != null) ? ultraPlayer.getCurrentPet().getType() : null;
+    }
+
+    private void updateEffect(UltraPlayer ultraPlayer) {
+        this.enabledEffect = (ultraPlayer.getCurrentParticleEffect() != null) ? ultraPlayer.getCurrentParticleEffect().getType() : null;
+    }
+
+    private void updateEmote(UltraPlayer ultraPlayer) {
+        this.enabledEmote = (ultraPlayer.getCurrentEmote() != null) ? ultraPlayer.getCurrentEmote().getType() : null;
+    }
+
+    private void updateGadget(UltraPlayer ultraPlayer) {
+        this.enabledGadget = (ultraPlayer.getCurrentGadget() != null) ? ultraPlayer.getCurrentGadget().getType() : null;
+    }
+
+    private void updateHat(UltraPlayer ultraPlayer) {
+        this.enabledHat = (ultraPlayer.getCurrentHat() != null) ? ultraPlayer.getCurrentHat().getType() : null;
+    }
+
+    private void updateMorph(UltraPlayer ultraPlayer) {
+        this.enabledMorph = (ultraPlayer.getCurrentMorph() != null) ? ultraPlayer.getCurrentMorph().getType() : null;
+    }
+
+    private void updateMount(UltraPlayer ultraPlayer) {
+        this.enabledMount = (ultraPlayer.getCurrentMount() != null) ? (MountType) ultraPlayer.getCurrentMount().getType() : null;
+    }
+
+    private void updateSuit(UltraPlayer ultraPlayer) {
+        this.enabledSuitParts = null;
+        Arrays.asList(ArmorSlot.values()).forEach(armorSlot -> {
+            if (ultraPlayer.getSuit(armorSlot) != null) {
+                this.enabledSuitParts.put(armorSlot, ultraPlayer.getSuit(armorSlot).getType());
+            }
+        });
+    }
+
 
     /**
      * Saves the profile to mysql.
