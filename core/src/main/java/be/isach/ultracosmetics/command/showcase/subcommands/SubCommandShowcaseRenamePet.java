@@ -100,7 +100,7 @@ public class SubCommandShowcaseRenamePet extends SubCommand {
                 return;
             case 3:
             case 4:
-                setPetName(sender, up, PetType.valueOf(args[1].toLowerCase()), args[2].toLowerCase());
+                setPetName(sender, up, PetType.valueOf(args[1].toLowerCase()), args[2]);
                 return;
             default:
                 sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Too many arguments. " + getUsage());
