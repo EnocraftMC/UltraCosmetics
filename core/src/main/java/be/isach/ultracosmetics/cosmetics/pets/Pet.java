@@ -151,7 +151,6 @@ public abstract class Pet extends Cosmetic<PetType> implements Updatable {
 
         // Set this pet as the UltraPlayer's current pet
         getOwner().setCurrentPet(this);
-        getOwner().saveCosmeticsProfile();
     }
 
     public String getColorVariantFromFile() {

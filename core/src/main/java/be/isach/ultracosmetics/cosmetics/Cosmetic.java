@@ -44,6 +44,7 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
     public void equip() { // TODO: Handle permissions and this NPC check correctly.
         if (!owner.getBukkitPlayer().hasPermission(getType().getPermission()) && !CitizensAPI.getNPCRegistry().isNPC(Bukkit.getEntity(ownerUniqueId))) { // Check if owner has correct permissions AND IS NOT AN NPC.
             getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
+            owner.removeCosmetic(category);
             return;
         }
 
