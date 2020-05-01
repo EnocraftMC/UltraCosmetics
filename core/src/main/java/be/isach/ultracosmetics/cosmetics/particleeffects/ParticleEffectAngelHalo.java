@@ -19,7 +19,7 @@ public class ParticleEffectAngelHalo extends ParticleEffect {
 
     public ParticleEffectAngelHalo(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("angelhalo"));
-        this.ignoreMove = true; // ignoreMove is actually stopping the animation on moving if false... change naming
+        this.stoponMove = false;
     }
 
     @Override

@@ -3,10 +3,6 @@ package be.isach.ultracosmetics.cosmetics.particleeffects;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.util.MathUtils;
-import be.isach.ultracosmetics.util.Particles;
-import be.isach.ultracosmetics.util.UtilParticles;
-import org.bukkit.Location;
 
 /**
  * Represents an instance of rainbow bubble particles summoned by a player.
@@ -20,7 +16,7 @@ public class ParticleEffectRainbowBubbles extends ParticleEffect {
 
     public ParticleEffectRainbowBubbles(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("rainbowbubbles"));
-        this.ignoreMove = false; // ignoreMove is actually stopping the animation on moving if false... change naming
+        this.stoponMove = true;
     }
 
     @Override

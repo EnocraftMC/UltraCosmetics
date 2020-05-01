@@ -22,7 +22,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
     /**
      * If true, the effect will ignore moving.
      */
-    protected boolean ignoreMove = false;
+    protected boolean stoponMove = true;
 
     public ParticleEffect(UltraCosmetics ultraCosmetics, UltraPlayer ultraPlayer, final ParticleEffectType type) {
         super(ultraCosmetics, Category.EFFECTS, ultraPlayer, type);
@@ -53,12 +53,12 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                         && getType() != ParticleEffectType.valueOf("flamefairy")
                         && getType() != ParticleEffectType.valueOf("enderaura")
                         && getType() != ParticleEffectType.valueOf("moltenwalk")) {
-                    if (!isMoving() || ignoreMove)
+                    if (!isMoving() || !stoponMove)
                         onUpdate();
                     if (isMoving()) {
                         boolean c = getType() == ParticleEffectType.valueOf("angelwings");
                         if (getType().getEffect() == Particles.REDSTONE) {
-                            if (!ignoreMove) {
+                            if (stoponMove) {
                                 for (int i = 0; i < 15; i++) {
                                     if (!c) {
                                         getType().getEffect().display(new Particles.OrdinaryColor(255, 0, 0), getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 128, 0.6f);

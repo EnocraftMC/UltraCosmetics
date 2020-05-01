@@ -28,7 +28,7 @@ public class ParticleEffectFlameFairy extends ParticleEffect {
 
         currentLocation = getPlayer().getLocation();
         targetLocation = generateNewTarget();
-        ignoreMove = true;
+        stoponMove = false;
     }
 
     @Override
