@@ -12,8 +12,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
  */
 public class ParticleEffectRainbowBubbles extends ParticleEffect {
 
-    private int step = 0;
-
     public ParticleEffectRainbowBubbles(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("rainbowbubbles"));
         this.stoponMove = true;

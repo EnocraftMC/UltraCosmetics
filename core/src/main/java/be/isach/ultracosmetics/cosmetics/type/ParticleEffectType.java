@@ -79,11 +79,12 @@ public class ParticleEffectType extends CosmeticMatType<ParticleEffect> {
         new ParticleEffectType("ultracosmetics.particleeffects.inlove", "InLove", 1, Particles.HEART, UCMaterial.RED_DYE, ParticleEffectInLove.class, "&7&oOMG wow I'm in love!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.magicalrods", "MagicalRods", 3, Particles.REDSTONE, UCMaterial.BLAZE_ROD, ParticleEffectMagicalRods.class, "&7&oMay these magical rods protect you!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.firewaves", "FireWaves", 4, Particles.FLAME, UCMaterial.GOLD_NUGGET, ParticleEffectFireWaves.class, "&7&oSome say theses waves of fire acts as a shield...", ServerVersion.v1_8_R1);
-        new ParticleEffectType("ultracosmetics.particleeffects.angelhalo", "AngelHalo", 2, Particles.REDSTONE, UCMaterial.LILY_OF_THE_VALLEY, ParticleEffectAngelHalo.class, "&e&oTo find grace, I cannot fall.", ServerVersion.v1_8_R1);
-        new ParticleEffectType("ultracosmetics.particleeffects.gardennymph", "GardenNymph", 2, Particles.VILLAGER_HAPPY, UCMaterial.BONE_MEAL, ParticleEffectGardenNymph.class, "&e&oTurn a new leaf.", ServerVersion.v1_8_R1);
-        new ParticleEffectType("ultracosmetics.particleeffects.rainbowbubbles", "RainbowBubbles", 2, Particles.SPELL_MOB, UCMaterial.PUFFERFISH, ParticleEffectRainbowBubbles.class, "&e&oC'mon you, let's dance!", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.angelhalo", "AngelHalo", 2, Particles.REDSTONE, UCMaterial.LILY_OF_THE_VALLEY, ParticleEffectAngelHalo.class, "&7&oTo find grace, I cannot fall.", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.gardennymph", "GardenNymph", 2, Particles.VILLAGER_HAPPY, UCMaterial.BONE_MEAL, ParticleEffectGardenNymph.class, "&7&oTurn a new leaf.", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.rainbowbubbles", "RainbowBubbles", 2, Particles.SPELL_MOB, UCMaterial.PUFFERFISH, ParticleEffectRainbowBubbles.class, "&7&oC'mon you, let's dance!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.lavacloud", "LavaCloud", 2, Particles.DRIP_LAVA, UCMaterial.BLAZE_POWDER, ParticleEffectLavaCloud.class, "&7&oThe weather forecast\n&7&odidn't tell me about this.", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.moltenwalk", "MoltenWalk", 2, Particles.DRIP_LAVA, UCMaterial.MAGMA_CREAM, ParticleEffectMoltenWalk.class, "&7&oThe floor is lava!", ServerVersion.v1_8_R1);
         new ParticleEffectType("ultracosmetics.particleeffects.wounded", "Wounded", 2, Particles.HEART, UCMaterial.FIRE_CORAL, ParticleEffectWounded.class, "&7&o'Tis but a scratch...", ServerVersion.v1_8_R1);
+        new ParticleEffectType("ultracosmetics.particleeffects.AFK", "AFK", 80, Particles.BARRIER, UCMaterial.BARRIER, ParticleEffectAFK.class, "&7&oBrb playing Roblox.", ServerVersion.v1_8_R1);
     }
 }

@@ -73,6 +73,8 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                             if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
                                 ParticleEffectWounded.onUpdateMoving(getPlayer());
                             }
+                        } else if(getType() == ParticleEffectType.valueOf("afk")) {
+                            return; // AFK doesn't have a moving animation, only an idle animation.
                         } else if (getType().getEffect() == Particles.ITEM_CRACK) {
                             if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
                                 for (int i = 0; i < 15; i++) {

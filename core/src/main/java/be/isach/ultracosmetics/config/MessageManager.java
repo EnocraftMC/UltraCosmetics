@@ -209,6 +209,7 @@ public class MessageManager {
         addMessage("Particle-Effects.LavaCloud.name", "&c&lLava Cloud");
         addMessage("Particle-Effects.MoltenWalk.name", "&4&lMolten Walk");
         addMessage("Particle-Effects.Wounded.name", "&4&lWounded");
+        addMessage("Particle-Effects.AFK.name", "&7&l>>AFK<<");
 
         // PETS
         addMessage("Pets.Piggy.menu-name", "&d&lPiggy");
