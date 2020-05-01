@@ -69,6 +69,10 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                             }
                         } else if(getType() == ParticleEffectType.valueOf("inlove")) {
                             UtilParticles.drawParticlesWithOffset(getType().getEffect(), .4f, .2f, .4f, getPlayer().getLocation().add(0, 0.5, 0), 1);
+                        } else if (getType() == ParticleEffectType.valueOf("wounded")) {
+                            if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
+                                ParticleEffectWounded.onUpdateMoving(getPlayer());
+                            }
                         } else if (getType().getEffect() == Particles.ITEM_CRACK) {
                             if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
                                 for (int i = 0; i < 15; i++) {
