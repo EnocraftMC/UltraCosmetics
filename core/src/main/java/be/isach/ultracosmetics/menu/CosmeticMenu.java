@@ -12,11 +12,15 @@ import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.UCMaterial;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +108,13 @@ public abstract class CosmeticMenu<T extends CosmeticMatType> extends Menu {
             String typeName = getTypeName(cosmeticMatType, player);
 
             ItemStack is = ItemFactory.create(cosmeticMatType.getMaterial(), toggle + " " + typeName);
+
+            if(is.getType().equals(Material.TIPPED_ARROW)) {
+                PotionMeta meta = (PotionMeta) is.getItemMeta();
+                meta.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL));
+                is.setItemMeta(meta);
+            }
+
             if (getCosmetic(player) != null && getCosmetic(player).getType() == cosmeticMatType) {
                 is = ItemFactory.addGlow(is);
             }
