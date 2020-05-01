@@ -51,7 +51,7 @@ public class CosmeticsProfileManager {
 
         // ultraCosmetics.getSmartLogger().write("Successfully created a cosmetics profile for " + up.getUsername());
 
-        cosmeticsProfile.loadToPlayer();
+        cosmeticsProfile.loadToPlayerWithoutSaving();
     }
 
     public CosmeticsProfile getProfile(UltraPlayer ultraPlayer) {

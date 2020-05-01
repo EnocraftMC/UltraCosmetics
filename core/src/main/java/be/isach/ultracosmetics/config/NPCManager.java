@@ -79,7 +79,7 @@ public class NPCManager {
                                 if (cp == null) {
                                     plugin.getCosmeticsProfileManager().initForPlayer(ultraPlayer);
                                 } else {
-                                    cp.loadToPlayer();
+                                    cp.loadToPlayerWithoutSaving();
                                 }
                             }
                         }
