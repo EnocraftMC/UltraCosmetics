@@ -718,6 +718,31 @@ public enum Particles {
     }
 
     /**
+     * Displays a single particle of specified size which is colored and only visible for all players within a certain range in the world of @param center
+     *
+     * @param color  Color of the particle
+     * @param center Center location of the effect
+     * @param range  Range of the visibility
+     * @param size   Size of the particle, depending on the particle type this could also affect the animation speed of the particle
+     * @throws ParticleVersionException If the particle effect is not supported by the server version
+     * @throws ParticleColorException   If the particle effect is not colorable or the color type is incorrect
+     * @see ParticlePacket#ParticlePacket(Particles, ParticleColor, boolean)
+     * @see ParticlePacket#sendTo(Location, double)
+     */
+    public void display(ParticleColor color, Location center, double range, float size) throws ParticleVersionException, ParticleColorException {
+        if (!isSupported()) {
+            throw new ParticleVersionException("This particle effect is not supported by your server version");
+        }
+        if (!hasProperty(ParticleProperty.COLORABLE)) {
+            throw new ParticleColorException("This particle effect is not colorable");
+        }
+        if (!isColorCorrect(this, color)) {
+            throw new ParticleColorException("The particle color type is incorrect");
+        }
+        new ParticlePacket(this, color, range > 256, size).sendTo(center, range);
+    }
+
+    /**
      * Displays a single particle which is colored and only visible for the specified players
      *
      * @param color   Color of the particle
@@ -1309,6 +1334,7 @@ public enum Particles {
         private final boolean longDistance;
         private final ParticleData data;
         private Object packet;
+        private float size = 1f;
 
         /**
          * Construct a new particle packet
@@ -1367,6 +1393,23 @@ public enum Particles {
          */
         public ParticlePacket(Particles effect, ParticleColor color, boolean longDistance) {
             this(effect, color.getValueX(), color.getValueY(), color.getValueZ(), 1, 0, longDistance, null);
+            if (effect == Particles.REDSTONE && color instanceof OrdinaryColor && ((OrdinaryColor) color).getRed() == 0) {
+                offsetX = Float.MIN_NORMAL;
+            }
+        }
+
+        /**
+         * Construct a new particle packet of a single colored particle with specified size
+         *
+         * @param effect       Particle effect
+         * @param color        Color of the particle
+         * @param longDistance Indicates whether the maximum distance is increased from 256 to 65536
+         * @param size         The desired size of the particle, note depending on the particle this also affects the animation speed
+         * @see #ParticleEffect(Particles, float, float, float, float, int, boolean, ParticleData)
+         */
+        public ParticlePacket(Particles effect, ParticleColor color, boolean longDistance, float size) {
+            this(effect, color.getValueX(), color.getValueY(), color.getValueZ(), 1, 0, longDistance, null);
+            this.size = size;
             if (effect == Particles.REDSTONE && color instanceof OrdinaryColor && ((OrdinaryColor) color).getRed() == 0) {
                 offsetX = Float.MIN_NORMAL;
             }
@@ -1472,7 +1515,7 @@ public enum Particles {
                     if (r == 0 && g == 0 && b == 0) { // Normal redstone particle, no color data supplied
                         r = 255;
                     }
-                    center.getWorld().spawnParticle(org.bukkit.Particle.valueOf(effect.toString()), center, 0, new org.bukkit.Particle.DustOptions(Color.fromRGB(r, g, b), 1));
+                    center.getWorld().spawnParticle(org.bukkit.Particle.valueOf(effect.toString()), center, 0, new org.bukkit.Particle.DustOptions(Color.fromRGB(r, g, b), size));
                 } else if (effect == Particles.SPELL_MOB || effect == Particles.SPELL_MOB_AMBIENT) {
                     center.getWorld().spawnParticle(org.bukkit.Particle.valueOf(effect.toString()), center, amount, offsetX, offsetY, offsetZ, 1);
                 } else if (effect == Particles.NOTE) {

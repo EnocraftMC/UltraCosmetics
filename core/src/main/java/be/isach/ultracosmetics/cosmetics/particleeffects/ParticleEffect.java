@@ -77,7 +77,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                                 }
                             }
                         } else
-                            UtilParticles.display(getType().getEffect(), .4f, .3f, .4f, getPlayer().getLocation().add(0, 1, 0), 3);
+                            UtilParticles.drawParticlesWithOffset(getType().getEffect(), .4f, .3f, .4f, getPlayer().getLocation().add(0, 1, 0), 3);
                     }
                 } else
                     onUpdate();

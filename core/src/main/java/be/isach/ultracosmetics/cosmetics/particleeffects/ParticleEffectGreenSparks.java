@@ -40,7 +40,7 @@ public class ParticleEffectGreenSparks extends ParticleEffect {
         Vector v = new Vector();
         v.setX(Math.cos(angle) * 1.1);
         v.setZ(Math.sin(angle) * 1.1);
-        UtilParticles.display(getType().getEffect(), getPlayer().getLocation().clone().add(v).add(0, height, 0));
+        UtilParticles.drawParticle(getType().getEffect(), getPlayer().getLocation().clone().add(v).add(0, height, 0));
         if(step >= 100) step = 0; // Stop potential overflow, at step = 100; angle = (2 * Math.PI) * 100 / 100 = 2 pi
         step += 4;
     }

@@ -43,7 +43,7 @@ public class ParticleEffectGardenNymph extends ParticleEffect {
             float x = MathUtils.cos(angle) * radius;
             float z = MathUtils.sin(angle) * radius;
             location.add(x, y, z);
-            UtilParticles.display(Particles.VILLAGER_HAPPY, location);
+            UtilParticles.drawParticle(Particles.VILLAGER_HAPPY, location);
             location.subtract(x, y, z);
         }
     }

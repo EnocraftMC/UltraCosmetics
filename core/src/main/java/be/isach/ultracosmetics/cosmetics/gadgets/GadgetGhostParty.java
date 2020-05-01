@@ -77,7 +77,7 @@ public class GadgetGhostParty extends Gadget {
         try {
             if (!bats.isEmpty()) {
                 for (Bat bat : bats.keySet())
-                    UtilParticles.display(Particles.CLOUD, 0.05f, 0.05f, 0.05f, bat.getLocation().add(0, 1.5, 0), 1);
+                    UtilParticles.drawParticlesWithOffset(Particles.CLOUD, 0.05f, 0.05f, 0.05f, bat.getLocation().add(0, 1.5, 0), 1);
             }
         } catch (Exception exc) {
         }

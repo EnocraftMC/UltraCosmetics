@@ -55,7 +55,7 @@ public class GadgetFreezeCannon extends Gadget {
             if (i.isOnGround()) {
                 for (Block b : BlockUtils.getBlocksInRadius(i.getLocation(), 4, false))
                     BlockUtils.setToRestore(b, Material.PACKED_ICE, (byte) 0, 50);
-                UtilParticles.display(Particles.FIREWORKS_SPARK, 4d, 3d, 4d, i.getLocation(), 80);
+                UtilParticles.drawParticlesWithOffset(Particles.FIREWORKS_SPARK, 4d, 3d, 4d, i.getLocation(), 80);
                 i.remove();
                 itemIterator.remove();
             }

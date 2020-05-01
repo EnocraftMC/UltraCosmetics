@@ -31,7 +31,7 @@ public class MountInfernalHorror extends MountHorse<SkeletonHorse> {
 
     @Override
     public void onUpdate() {
-        UtilParticles.display(Particles.FLAME, 0.4f, 0.2f, 0.4f, entity.getLocation().clone().add(0, 1, 0), 5);
+        UtilParticles.drawParticlesWithOffset(Particles.FLAME, 0.4f, 0.2f, 0.4f, entity.getLocation().clone().add(0, 1, 0), 5);
     }
 
     @Override

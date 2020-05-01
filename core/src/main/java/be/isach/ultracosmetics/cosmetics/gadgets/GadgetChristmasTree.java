@@ -50,7 +50,7 @@ public class GadgetChristmasTree extends Gadget {
 
     private void drawSnow() {
         lastLocation.add(0, 3, 0);
-        UtilParticles.display(Particles.FIREWORKS_SPARK, 4d, 3d, 4d, lastLocation, 10);
+        UtilParticles.drawParticlesWithOffset(Particles.FIREWORKS_SPARK, 4d, 3d, 4d, lastLocation, 10);
         lastLocation.subtract(0, 3, 0);
     }
 
@@ -73,7 +73,7 @@ public class GadgetChristmasTree extends Gadget {
         float ratio = length / 10;
         Vector vector = link.multiply(ratio);
         for (int i = 0; i < 10; i++) {
-            UtilParticles.display(LOG_COLOR.getRed(), LOG_COLOR.getGreen(), LOG_COLOR.getBlue(), current);
+            UtilParticles.drawColoredDust(LOG_COLOR.getRed(), LOG_COLOR.getGreen(), LOG_COLOR.getBlue(), current);
             current.add(vector);
         }
     }
@@ -91,7 +91,7 @@ public class GadgetChristmasTree extends Gadget {
                     float x = MathUtils.cos(angle) * (radius + 0.05f);
                     float z = MathUtils.sin(angle) * (radius + 0.05f);
                     lastLocation.add(x, f, z);
-                    UtilParticles.display(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255), lastLocation);
+                    UtilParticles.drawColoredDust(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255), lastLocation);
                     lastLocation.subtract(x, f, z);
                 }
                 for (int i = 0; i < d; i++) {
@@ -100,7 +100,7 @@ public class GadgetChristmasTree extends Gadget {
                     float x = MathUtils.cos(angle) * radius;
                     float z = MathUtils.sin(angle) * radius;
                     lastLocation.add(x, f, z);
-                    UtilParticles.display(0, 100, 0, lastLocation);
+                    UtilParticles.drawColoredDust(0, 100, 0, lastLocation);
                     lastLocation.subtract(x, f, z);
                 }
                 radius = radius - (0.7f / 8.5f);
@@ -110,7 +110,7 @@ public class GadgetChristmasTree extends Gadget {
 
     private void drawStar() {
         lastLocation.add(0, 2.6, 0);
-        UtilParticles.display(255, 255, 0, lastLocation);
+        UtilParticles.drawColoredDust(255, 255, 0, lastLocation);
         lastLocation.subtract(0, 2.6, 0);
     }
 

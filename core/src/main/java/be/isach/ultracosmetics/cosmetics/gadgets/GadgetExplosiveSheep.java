@@ -124,7 +124,7 @@ public class GadgetExplosiveSheep extends Gadget {
 
             if (time < 0.5) {
                 SoundUtil.playSound(s.getLocation(), Sounds.EXPLODE, 1.4f, 1.5f);
-                UtilParticles.display(Particles.EXPLOSION_HUGE, s.getLocation());
+                UtilParticles.drawParticle(Particles.EXPLOSION_HUGE, s.getLocation());
                 for (int i = 0; i < 50; i++) {
                     if (getOwner() == null || getPlayer() == null) {
                         return;
@@ -144,7 +144,7 @@ public class GadgetExplosiveSheep extends Gadget {
                     UltraCosmeticsData.get().getVersionManager().getEntityUtil().clearPathfinders(sheep);
                     UltraCosmeticsData.get().getVersionManager().getEntityUtil().makePanic(sheep);
                     Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
-                        UtilParticles.display(Particles.LAVA, sheep.getLocation(), 5);
+                        UtilParticles.drawParticles(Particles.LAVA, sheep.getLocation(), 5);
                         sheep.remove();
                         EXPLOSIVE_SHEEP.remove(gadgetExplosiveSheep);
                     }, 110);

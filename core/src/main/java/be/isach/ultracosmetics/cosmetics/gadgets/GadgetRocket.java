@@ -146,7 +146,7 @@ public class GadgetRocket extends Gadget {
                             fallingBlocks.clear();
                             FallDamageManager.addNoFall(getPlayer());
                             SoundUtil.playSound(getPlayer().getLocation(), Sounds.EXPLODE, 1.0f, 1.0f);
-                            UtilParticles.display(Particles.EXPLOSION_HUGE, getPlayer().getLocation());
+                            UtilParticles.drawParticle(Particles.EXPLOSION_HUGE, getPlayer().getLocation());
                             launching = false;
                         }, 80);
                         cancel();
@@ -187,7 +187,7 @@ public class GadgetRocket extends Gadget {
                 }.runTask(getUltraCosmetics());
             }
 
-            UtilParticles.display(Particles.SMOKE_LARGE, 0.3f, 0.2f, 0.3f, armorStand.getLocation().add(0, -3, 0), 10);
+            UtilParticles.drawParticlesWithOffset(Particles.SMOKE_LARGE, 0.3f, 0.2f, 0.3f, armorStand.getLocation().add(0, -3, 0), 10);
             SoundUtil.playSound(armorStand.getLocation().clone().add(0, -3, 0), Sounds.FIZZ, 0.025f, 1.0f);
         }
         for (FallingBlock fallingBlock : fallingBlocks) {
@@ -197,8 +197,8 @@ public class GadgetRocket extends Gadget {
             if (fallingBlocks.get(8).getPassenger() == null) {
                 fallingBlocks.get(8).setPassenger(getPlayer());
             }
-            UtilParticles.display(Particles.FLAME, 0.3f, 0.2f, 0.3f, getPlayer().getLocation().add(0, -3, 0), 10);
-            UtilParticles.display(Particles.LAVA, 0.3f, 0.2f, 0.3f, getPlayer().getLocation().add(0, -3, 0), 10);
+            UtilParticles.drawParticlesWithOffset(Particles.FLAME, 0.3f, 0.2f, 0.3f, getPlayer().getLocation().add(0, -3, 0), 10);
+            UtilParticles.drawParticlesWithOffset(Particles.LAVA, 0.3f, 0.2f, 0.3f, getPlayer().getLocation().add(0, -3, 0), 10);
             SoundUtil.playSound(fallingBlocks.get(9).getLocation().clone().add(0, -1, 0), Sounds.BAT_LOOP, 1.5f, 1.0f);
             SoundUtil.playSound(fallingBlocks.get(9).getLocation().clone().add(0, -1, 0), Sounds.FIZZ, 0.025f, 1.0f);
         }

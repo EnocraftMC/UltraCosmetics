@@ -21,6 +21,6 @@ public class ParticleEffectEnchanted extends ParticleEffect {
 
     @Override
     public void onUpdate() {
-        UtilParticles.display(Particles.ENCHANTMENT_TABLE, getPlayer().getLocation().add(0, MathUtils.randomDouble(0.1, 2), 0), 60, 8f);
+        UtilParticles.drawParticlesWithSpeed(Particles.ENCHANTMENT_TABLE, getPlayer().getLocation().add(0, MathUtils.randomDouble(0.1, 2), 0), 60, 8f);
     }
 }

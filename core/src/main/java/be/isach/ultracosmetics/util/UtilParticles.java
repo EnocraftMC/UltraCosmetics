@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class UtilParticles {
 
-    private final static int DEF_RADIUS = 128;
+    public final static int DEF_RADIUS = 128;
 
     public static void drawParticleLine(Location from, Location to, Particles effect, int particles, Color color) {
         drawParticleLine(from, to, effect, particles, color.getRed(), color.getGreen(), color.getBlue());
@@ -56,9 +56,9 @@ public class UtilParticles {
                 v.setX(Math.cos(angle) * radius);
                 v.setZ(Math.sin(angle) * radius);
                 if (effect == Particles.REDSTONE)
-                    display(0, 0, 255, location);
+                    drawColoredDust(0, 0, 255, location);
                 else
-                    display(effect, location);
+                    drawParticle(effect, location);
                 location.subtract(v);
                 location.subtract(0, 0.1d, 0);
                 if (location.getY() <= y) {
@@ -71,34 +71,41 @@ public class UtilParticles {
         runnable.runTaskTimer(UltraCosmeticsData.get().getPlugin(), 0, 1);
     }
 
-    public static void display(Particles effect, Location location, int amount, float speed) {
+    public static void drawParticlesWithSpeed(Particles effect, Location location, int amount, float speed) {
         effect.display(0, 0, 0, speed, amount, location, 128);
     }
 
-    public static void display(Particles effect, Location location, int amount) {
+    public static void drawParticles(Particles effect, Location location, int amount) {
         effect.display(0, 0, 0, 0, amount, location, 128);
     }
 
-    public static void display(Particles effect, Location location) {
-        display(effect, location, 1);
+    public static void drawParticle(Particles effect, Location location) {
+        drawParticles(effect, location, 1);
     }
 
-    public static void display(Particles effect, double x, double y, double z, Location location, int amount) {
-        effect.display((float) x, (float) y, (float) z, 0f, amount, location, 128);
+    public static void drawParticlesWithOffset(Particles effect, double offsetX, double offsetY, double offsetZ, Location location, int amount) {
+        effect.display((float) offsetX, (float) offsetY, (float) offsetZ, 0f, amount, location, 128);
     }
 
-    public static void display(Particles effect, int red, int green, int blue, Location location, int amount) {
+    public static void drawColoredParticles(Particles effect, int red, int green, int blue, Location location, int amount) {
         for (int i = 0; i < amount; i++)
             effect.display(new Particles.OrdinaryColor(red, green, blue), location, DEF_RADIUS);
     }
 
-    public static void display(int red, int green, int blue, Location location) {
-        display(Particles.REDSTONE, red, green, blue, location, 1);
+    public static void drawColoredParticlesWithSize(Particles effect, int red, int green, int blue, Location location, int amount, float size) {
+        for (int i = 0; i < amount; i++)
+            effect.display(new Particles.OrdinaryColor(red, green, blue), location, DEF_RADIUS, size);
     }
 
-    public static void display(Particles effect, int red, int green, int blue, Location location) {
-        display(effect, red, green, blue, location, 1);
+    public static void drawColoredParticle(Particles effect, int red, int green, int blue, Location location) {
+        drawColoredParticles(effect, red, green, blue, location, 1);
     }
 
+    public static void drawColoredDust(int red, int green, int blue, Location location) {
+        drawColoredParticles(Particles.REDSTONE, red, green, blue, location, 1);
+    }
 
+    public static void drawColoredDustWithSize(int red, int green, int blue, Location location, float size) {
+        drawColoredParticlesWithSize(Particles.REDSTONE, red, green, blue, location, 1, size);
+    }
 }

@@ -48,8 +48,8 @@ public class GadgetFunGun extends Gadget {
         for (Projectile snowball : projectiles)
             snowball.remove();
 
-        UtilParticles.display(Particles.LAVA, 1.3f, 1f, 1.3f, location, 16);
-        UtilParticles.display(Particles.HEART, 0.8f, 0.8f, 0.8f, location, 20);
+        UtilParticles.drawParticlesWithOffset(Particles.LAVA, 1.3f, 1f, 1.3f, location, 16);
+        UtilParticles.drawParticlesWithOffset(Particles.HEART, 0.8f, 0.8f, 0.8f, location, 20);
         SoundUtil.playSound(getPlayer(), Sounds.CAT_PURREOW, 1.4f, 1.5f);
     }
 

@@ -194,7 +194,7 @@ public class GadgetPortalGun extends Gadget {
                         }
                     }
                     MathUtils.rotateVector(v, x, 0, z);
-                    UtilParticles.display(31, 0, 127, loc.add(v));
+                    UtilParticles.drawColoredDust(31, 0, 127, loc.add(v));
                 }
             }
             if (locRed != null) {
@@ -251,7 +251,7 @@ public class GadgetPortalGun extends Gadget {
                         }
                     }
                     MathUtils.rotateVector(v, x, 0, z);
-                    UtilParticles.display(255, 0, 0, loc.add(v));
+                    UtilParticles.drawColoredDust(255, 0, 0, loc.add(v));
                 }
             }
         } catch (IllegalArgumentException ex) {

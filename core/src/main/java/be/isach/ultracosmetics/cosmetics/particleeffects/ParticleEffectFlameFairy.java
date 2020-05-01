@@ -68,8 +68,8 @@ public class ParticleEffectFlameFairy extends ParticleEffect {
         if (distTarget > 0.1)
             currentLocation.add(targetDirection.clone().multiply(movementSpeed));
 
-        UtilParticles.display(Particles.LAVA, currentLocation);
-        UtilParticles.display(Particles.FLAME, currentLocation);
+        UtilParticles.drawParticle(Particles.LAVA, currentLocation);
+        UtilParticles.drawParticle(Particles.FLAME, currentLocation);
     }
 
     private Location generateNewTarget() {
