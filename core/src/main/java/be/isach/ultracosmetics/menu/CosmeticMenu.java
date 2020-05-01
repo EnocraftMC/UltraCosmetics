@@ -109,6 +109,7 @@ public abstract class CosmeticMenu<T extends CosmeticMatType> extends Menu {
 
             ItemStack is = ItemFactory.create(cosmeticMatType.getMaterial(), toggle + " " + typeName);
 
+            // Set metadata for "Wounded" particle effect menu item.
             if(is.getType().equals(Material.TIPPED_ARROW)) {
                 PotionMeta meta = (PotionMeta) is.getItemMeta();
                 meta.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL));
