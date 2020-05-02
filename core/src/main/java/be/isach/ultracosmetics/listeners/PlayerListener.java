@@ -127,15 +127,19 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onAFK(AfkStatusChangeEvent event) {
         Player player = event.getAffected().getBase();
-        UltraPlayer ultraPlayer = ultraCosmetics.getPlayerManager().getUltraPlayer(player);
-        if(event.getValue()) { // Player is AFK
-            ultraPlayer.clearWithoutSaving();
-            CosmeticType afkCosmetic = ParticleEffectType.valueOf("afk");
-            afkCosmetic.equipWithoutSaving(ultraPlayer, ultraCosmetics);
-        } else { // Player is no longer AFK
-            ultraPlayer.removeParticleEffectWithoutSaving();
-            ultraPlayer.getCosmeticsProfile().loadFromData();
-            ultraPlayer.getCosmeticsProfile().loadToPlayerWithoutSaving();
+
+        // Check if player has permission to override the spawning of the AFK cosmetic.
+        if(!player.hasPermission("ultracosmetics.afkoverride")) {
+            UltraPlayer ultraPlayer = ultraCosmetics.getPlayerManager().getUltraPlayer(player);
+            if (event.getValue()) { // Player is AFK, clear any cosmetics they have equipped, then spawn >>AFK<<.
+                ultraPlayer.clearWithoutSaving();
+                CosmeticType afkCosmetic = ParticleEffectType.valueOf("afk");
+                afkCosmetic.equipWithoutSaving(ultraPlayer, ultraCosmetics);
+            } else { // Player is no longer AFK, remove >>AFK<< and return what they had equipped previously.
+                ultraPlayer.removeParticleEffectWithoutSaving();
+                ultraPlayer.getCosmeticsProfile().loadFromData();
+                ultraPlayer.getCosmeticsProfile().loadToPlayerWithoutSaving();
+            }
         }
     }
 

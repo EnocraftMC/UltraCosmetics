@@ -641,3 +641,5 @@ permissions:
       default: op
     ultracosmetics.aliases.buykey:
       default: op
+    ultracosmetics.afkoverride:
+      default: op
