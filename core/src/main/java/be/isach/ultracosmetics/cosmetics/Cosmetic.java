@@ -42,12 +42,12 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
     }
 
     public void equip() {
-        if(!cosmeticType.getConfigName().equalsIgnoreCase("AFK")) { // Check for permissions if not the AFK cosmetic.
-            if (!owner.getBukkitPlayer().hasPermission(getType().getPermission()) && !CitizensAPI.getNPCRegistry().isNPC(Bukkit.getEntity(ownerUniqueId))) { // Check if owner has correct permissions AND IS NOT AN NPC.
-                getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
-                owner.removeCosmetic(category);
-                return;
-            }
+        if (!cosmeticType.getConfigName().equalsIgnoreCase("AFK") // If AFK cosmetic, disregard this permissions check.
+                && !owner.getBukkitPlayer().hasPermission(getType().getPermission()) // Check if owner has correct permissions
+                && !CitizensAPI.getNPCRegistry().isNPC(Bukkit.getEntity(ownerUniqueId))) {  // Not an NPC
+            getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
+            owner.removeCosmetic(category);
+            return;
         }
 
         ultraCosmetics.getServer().getPluginManager().registerEvents(this, ultraCosmetics);
