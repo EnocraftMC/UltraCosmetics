@@ -4,7 +4,10 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.cosmetics.particleeffects.ParticleEffect;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
+import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
+import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfile;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfileManager;
@@ -12,6 +15,7 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.treasurechests.TreasureRandomizer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.UCMaterial;
+import net.ess3.api.events.AfkStatusChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -119,6 +123,22 @@ public class PlayerListener implements Listener {
             ultraPlayer.setQuitting(false);
         }
     }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onAFK(AfkStatusChangeEvent event) {
+        Player player = event.getAffected().getBase();
+        UltraPlayer ultraPlayer = ultraCosmetics.getPlayerManager().getUltraPlayer(player);
+        if(event.getValue()) { // Player is AFK
+            ultraPlayer.clearWithoutSaving();
+            CosmeticType afkCosmetic = ParticleEffectType.valueOf("afk");
+            afkCosmetic.equipWithoutSaving(ultraPlayer, ultraCosmetics);
+        } else { // Player is no longer AFK
+            ultraPlayer.removeParticleEffectWithoutSaving();
+            ultraPlayer.getCosmeticsProfile().loadFromData();
+            ultraPlayer.getCosmeticsProfile().loadToPlayerWithoutSaving();
+        }
+    }
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDrop(PlayerDropItemEvent event) {

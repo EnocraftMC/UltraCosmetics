@@ -99,5 +99,10 @@ subprojects {
         maven {
             url 'https://repo.citizensnpcs.co/'
         }
+
+        // EssentialsX
+        maven {
+            url 'https://ci.ender.zone/plugin/repository/everything/'
+        }
     }
 }

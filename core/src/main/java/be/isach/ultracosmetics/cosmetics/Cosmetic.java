@@ -59,7 +59,9 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
         } else {
             mess = mess.replace(getCategory().getChatPlaceholder(), TextUtil.filterPlaceHolder(getTypeName(), getUltraCosmetics()));
         }
-        getPlayer().sendMessage(mess);
+        if(!cosmeticType.getConfigName().equalsIgnoreCase("AFK")) { // If cosmetic is not the AFK cosmetic, send summon message.
+            getPlayer().sendMessage(mess);
+        }
 
         onEquip();
     }
@@ -74,7 +76,9 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
             } else {
                 mess = mess.replace(getCategory().getChatPlaceholder(), TextUtil.filterPlaceHolder(getTypeName(), getUltraCosmetics()));
             }
-            getPlayer().sendMessage(mess);
+            if(!cosmeticType.getConfigName().equalsIgnoreCase("AFK")) { // If cosmetic is not the AFK cosmetic, send unsummon message.
+                getPlayer().sendMessage(mess);
+            }
         } catch (Exception ignored) {
         }
 
