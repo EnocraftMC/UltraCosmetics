@@ -5,6 +5,7 @@ import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.Particles;
 import be.isach.ultracosmetics.util.UtilParticles;
+import org.bukkit.Location;
 
 /**
  * Represents an instance of AFK particles summoned when a player goes AFK.
@@ -21,7 +22,7 @@ public class ParticleEffectAFK extends ParticleEffect {
 
     @Override
     public void onUpdate() {
-        UtilParticles.drawParticle(Particles.BARRIER, getPlayer().getLocation().add(0,3f,0));
+        UtilParticles.drawParticle(Particles.BARRIER, getPlayer().getLocation().add(0, 2.5f, 0));
     }
 
 }
