@@ -6,9 +6,15 @@ import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.command.showcase.subcommands.SubCommandShowcaseClear;
 import be.isach.ultracosmetics.command.showcase.subcommands.SubCommandShowcaseRenamePet;
 import be.isach.ultracosmetics.command.showcase.subcommands.SubCommandShowcaseToggle;
+import be.isach.ultracosmetics.config.MessageManager;
+import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.command.BlockCommandSender;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
@@ -42,6 +48,47 @@ public class CommandShowcaseManager extends AbstractCommandManager implements Co
 			SubCommand sub = getCommands().get(h - 1);
 			commandSender.sendMessage(ChatColor.DARK_GRAY + "|  " + ChatColor.GRAY + sub.getUsage() + ChatColor.WHITE + " " + ChatColor.ITALIC + sub.getDescription());
 		}
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments) {
+
+		if (!(sender instanceof Player) && !(sender instanceof ConsoleCommandSender) && !(sender instanceof BlockCommandSender)) {
+			return false;
+		}
+
+		// Parse arguments that have spaces if surrounded by quotes
+		String[] parsedArguments = quotedSpaces(arguments);
+
+		if (parsedArguments == null
+				|| parsedArguments.length == 0) {
+			showHelp(sender, 1);
+			return true;
+		}
+
+		if (parsedArguments.length == 1 && MathUtils.isInteger(parsedArguments[0])) {
+			showHelp(sender, Math.max(1, Math.min(Integer.parseInt(parsedArguments[0]), getMaxPages())));
+			return true;
+		}
+
+		for (SubCommand meCommand : getCommands()) {
+			if (meCommand.is(parsedArguments[0])) {
+				if (!sender.hasPermission(meCommand.getPermission())) {
+					sender.sendMessage(MessageManager.getMessage("No-Permission"));
+					return true;
+				}
+				if (sender instanceof Player) {
+					meCommand.onExePlayer((Player) sender, parsedArguments);
+				} else if (sender instanceof ConsoleCommandSender) {
+					meCommand.onExeConsole((ConsoleCommandSender) sender, parsedArguments);
+				} else {
+					meCommand.onExeCmdBlock((BlockCommandSender) sender, parsedArguments);
+				}
+				return true;
+			}
+		}
+		showHelp(sender, 1);
+		return true;
 	}
 
 	@Override

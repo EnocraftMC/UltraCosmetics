@@ -13,6 +13,7 @@ import be.isach.ultracosmetics.cosmetics.type.SuitType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -34,13 +35,11 @@ public class SubCommandShowcaseToggle extends SubCommand {
     private UltraCosmetics plugin;
 
     public SubCommandShowcaseToggle(UltraCosmetics ultraCosmetics) {
-        super("Equips a cosmetic.", "ultracosmetics.*", "/ucs toggle <type> <cosmetic> [npc id]", ultraCosmetics, "toggle");
+        super("Toggles a cosmetic on an NPC.", "ultracosmetics.*", "/ucs toggle <type> <cosmetic> [npc id]", ultraCosmetics, "toggle");
         plugin = ultraCosmetics;
     }
 
-    // TODO: FIX TOGGLE
-    public void common(CommandSender commandSender, String... args) {
-        Player sender = (Player) commandSender;
+    public void common(CommandSender sender, String... args) {
 
         if (args.length < 3) {
             sender.sendMessage(MessageManager.getMessage("Prefix") + " §c§l" + getUsage());
@@ -52,7 +51,7 @@ public class SubCommandShowcaseToggle extends SubCommand {
 
         // If no NPC specified, use the currently "selected" npc, else parse from arguments
         if (args.length < 4) {
-            npcTarget = CitizensAPI.getDefaultNPCSelector().getSelected(commandSender);
+            npcTarget = CitizensAPI.getDefaultNPCSelector().getSelected(sender);
             if(npcTarget == null) {
                 sender.sendMessage(MessageManager.getMessage("Prefix") + " §c§l" + "No NPC is selected.");
                 return;
@@ -161,9 +160,10 @@ public class SubCommandShowcaseToggle extends SubCommand {
     }
 
     @Override
-    public void onExeConsole(ConsoleCommandSender sender, String... args) {
-        common(sender, args);
-    }
+    public void onExeConsole(ConsoleCommandSender sender, String... args) { common(sender, args); }
+
+    @Override
+    public void onExeCmdBlock(BlockCommandSender sender, String... args) { common(sender, args); }
 
     @Override
     public List<String> getTabCompleteSuggestion(CommandSender sender, String... args) {

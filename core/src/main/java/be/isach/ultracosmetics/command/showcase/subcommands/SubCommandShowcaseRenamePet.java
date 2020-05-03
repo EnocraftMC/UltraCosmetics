@@ -12,6 +12,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -47,8 +48,10 @@ public class SubCommandShowcaseRenamePet extends SubCommand {
         common(sender, args);
     }
 
+    @Override
+    public void onExeCmdBlock(BlockCommandSender sender, String... args) { common(sender, args); }
+
     private void common(CommandSender sender, String... args) {
-        Player player = (Player) sender;
         NPC npcTarget = null;
         Player npc;
 

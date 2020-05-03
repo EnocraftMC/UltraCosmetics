@@ -39,7 +39,7 @@ public class SubCommandClear extends SubCommand {
         common(sender, args);
     }
 
-    private void common(CommandSender sender, String... args) { // TODO: Restructure command syntaxes
+    private void common(CommandSender sender, String... args) {
         Player receiver;
         if (args.length < 2) {
             sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Incorrect Usage. " + getUsage());
