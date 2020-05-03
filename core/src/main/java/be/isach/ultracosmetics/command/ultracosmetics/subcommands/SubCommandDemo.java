@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.command.ultracosmetics.subcommands;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.command.SubCommand;
-import be.isach.ultracosmetics.command.ultracosmetics.UCTabCompleter;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
