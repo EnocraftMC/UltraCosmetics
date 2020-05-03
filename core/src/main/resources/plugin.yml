@@ -97,6 +97,7 @@ permissions:
       - ultracosmetics.command.treasure
       - ultracosmetics.command.purge
       - ultracosmetics.command.renamepet
+      - ultracosmetics.command.demo
     default: op
   ultracosmetics.command.clear:
     default: op
@@ -117,6 +118,8 @@ permissions:
   ultracosmetics.command.purge:
     default: op
   ultracosmetics.command.renamepet:
+    default: op
+  ultracosmetics.command.demo:
     default: op
   ultracosmetics.gadgets.*:
     children:
