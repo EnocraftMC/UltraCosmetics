@@ -71,6 +71,30 @@ public class UtilParticles {
         runnable.runTaskTimer(UltraCosmeticsData.get().getPlugin(), 0, 1);
     }
 
+    public static Location getLeftLegLocation(Location playerLocation) {
+        final float newX = (float) (0.15f * Math.cos(Math.toRadians(playerLocation.getYaw())));
+        final float newZ = (float) (0.15f * Math.sin(Math.toRadians(playerLocation.getYaw())));
+        return playerLocation.add(newX, 0f, newZ);
+    }
+
+    public static Location getRightLegLocation(Location playerLocation) {
+        final float newX = (float) (-0.15f * Math.cos(Math.toRadians(playerLocation.getYaw())));
+        final float newZ = (float) (-0.15f * Math.sin(Math.toRadians(playerLocation.getYaw())));
+        return playerLocation.add(newX, 0f, newZ);
+    }
+
+    public static Location getLeftShoulderLocation(Location playerLocation) {
+        final float newX = (float) (0.3f * (Math.cos(Math.toRadians(playerLocation.getYaw()))));
+        final float newZ = (float) (0.3f * (Math.sin(Math.toRadians(playerLocation.getYaw()))));
+        return playerLocation.add(newX, 1.35f, newZ);
+    }
+
+    public static Location getRightShoulderLocation(Location playerLocation) {
+        final float newX = (float) (0.3f * (Math.cos(Math.toRadians(playerLocation.getYaw()))));
+        final float newZ = (float) (0.3f * (Math.sin(Math.toRadians(playerLocation.getYaw()))));
+        return playerLocation.add(newX, 1.35f, newZ);
+    }
+
     public static void drawParticlesWithSpeed(Particles effect, Location location, int amount, float speed) {
         effect.display(0, 0, 0, speed, amount, location, 128);
     }

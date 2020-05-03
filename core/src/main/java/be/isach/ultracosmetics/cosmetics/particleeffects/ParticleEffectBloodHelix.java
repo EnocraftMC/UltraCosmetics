@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.cosmetics.particleeffects;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.util.Particles;
 import be.isach.ultracosmetics.util.UtilParticles;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
@@ -36,7 +35,7 @@ public class ParticleEffectBloodHelix extends ParticleEffect {
             Vector v = new Vector();
             v.setX(Math.cos(angle) * radius);
             v.setZ(Math.sin(angle) * radius);
-            UtilParticles.drawParticle(Particles.REDSTONE, location.add(v));
+            UtilParticles.drawColoredDustWithSize(255,0,0,location.add(v), 0.7f);
             location.subtract(v);
             location.add(0, 0.12d, 0);
             radius -= 0.044f;
@@ -47,7 +46,7 @@ public class ParticleEffectBloodHelix extends ParticleEffect {
             Vector v = new Vector();
             v.setX(Math.cos(angle) * radius2);
             v.setZ(Math.sin(angle) * radius2);
-            UtilParticles.drawParticle(Particles.REDSTONE, location2.add(v));
+            UtilParticles.drawColoredDustWithSize(255,0,0,location2.add(v), 0.7f);
             location2.subtract(v);
             location2.add(0, 0.12d, 0);
             radius2 -= 0.044f;

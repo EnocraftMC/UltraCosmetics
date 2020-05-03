@@ -21,7 +21,7 @@ public class ParticleEffectGardenNymph extends ParticleEffect {
 
     public ParticleEffectGardenNymph(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("gardennymph"));
-        this.ignoreMove = false; // ignoreMove is actually stopping the animation on moving if false... change naming
+        this.stoponMove = true;
     }
 
     @Override

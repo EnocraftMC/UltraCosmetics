@@ -4,13 +4,12 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.util.Particles;
+import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.ServerVersion;
 import be.isach.ultracosmetics.util.UCMaterial;
+import be.isach.ultracosmetics.util.UtilParticles;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.util.Vector;
 
 /**
  * Represents an instance of frozen walk particles summoned by a player.
@@ -26,30 +25,14 @@ public class ParticleEffectFrozenWalk extends ParticleEffect {
 
     @Override
     public void onUpdate() {
-        Vector vectorLeft = getLeftVector(getPlayer().getLocation()).normalize().multiply(0.15);
-        Vector vectorRight = getRightVector(getPlayer().getLocation()).normalize().multiply(0.15);
-        Location locationLeft = getPlayer().getLocation().add(vectorLeft);
-        Location locationRight = getPlayer().getLocation().add(vectorRight);
-        locationLeft.setY(getPlayer().getLocation().getY());
-        locationRight.setY(getPlayer().getLocation().getY());
+        Location locationLeft = UtilParticles.getLeftLegLocation(getPlayer().getLocation());
+        Location locationRight = UtilParticles.getRightLegLocation(getPlayer().getLocation());
+
         if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
-            locationLeft.getWorld().spawnParticle(Particle.ITEM_CRACK, locationLeft, 0, 0, 0, 0, 0, UCMaterial.SNOW.parseItem());
-            locationLeft.getWorld().spawnParticle(Particle.ITEM_CRACK, locationRight, 0, 0, 0, 0, 0, UCMaterial.SNOW.parseItem());
-        } else {
-            Particles.ITEM_CRACK.display(new Particles.ItemData(Material.SNOW, (byte) 0), 0, 0, 0, 0f, 0, locationLeft, 32);
-            Particles.ITEM_CRACK.display(new Particles.ItemData(Material.SNOW, (byte) 0), 0, 0, 0, 0f, 0, locationRight, 32);
+            locationLeft.getWorld().spawnParticle(Particle.ITEM_CRACK, locationLeft, 0, 0, 0, 0, 0, UCMaterial.BLUE_ICE.parseItem());
+            locationLeft.getWorld().spawnParticle(Particle.ITEM_CRACK, locationRight, 0, 0, 0, 0, 0, UCMaterial.BLUE_ICE.parseItem());
+            UtilParticles.drawColoredDustWithSize(255,255,255, getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 0.6f);
+            UtilParticles.drawColoredDustWithSize(255,255,255, getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 0.6f);
         }
-    }
-
-    public static Vector getLeftVector(Location loc) {
-        final float newX = (float) (loc.getX() + (1 * Math.cos(Math.toRadians(loc.getYaw() + 0))));
-        final float newZ = (float) (loc.getZ() + (1 * Math.sin(Math.toRadians(loc.getYaw() + 0))));
-        return new Vector(newX - loc.getX(), 0, newZ - loc.getZ());
-    }
-
-    public static Vector getRightVector(Location loc) {
-        final float newX = (float) (loc.getX() + (-1 * Math.cos(Math.toRadians(loc.getYaw() + 0))));
-        final float newZ = (float) (loc.getZ() + (-1 * Math.sin(Math.toRadians(loc.getYaw() + 0))));
-        return new Vector(newX - loc.getX(), 0, newZ - loc.getZ());
     }
 }

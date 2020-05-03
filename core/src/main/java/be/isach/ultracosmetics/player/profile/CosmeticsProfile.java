@@ -244,8 +244,12 @@ public class CosmeticsProfile {
         }
 
         for (ArmorSlot slot : ArmorSlot.values()) {
-            SuitType enabledSuitPart = enabledSuitParts.get(slot);
-            settingsManager.set("enabled.suit." + slot.toString().toLowerCase(), enabledSuitPart != null ? enabledSuitPart.getConfigName() : "none");
+            try {
+                SuitType enabledSuitPart = enabledSuitParts.get(slot);
+                settingsManager.set("enabled.suit." + slot.toString().toLowerCase(), enabledSuitPart != null ? enabledSuitPart.getConfigName() : "none");
+            } catch (NullPointerException e) {
+                settingsManager.set("enabled.suit." + slot.toString().toLowerCase(), "none");
+            }
         }
     }
 

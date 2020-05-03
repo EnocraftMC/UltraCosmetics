@@ -13,12 +13,17 @@ import be.isach.ultracosmetics.util.UtilParticles;
  */
 public class ParticleEffectInLove extends ParticleEffect {
 
+    private int cycleCount = 0;
+
     public ParticleEffectInLove(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("inlove"));
     }
 
     @Override
     public void onUpdate() {
-        UtilParticles.drawParticlesWithOffset(getType().getEffect(), 0.5f, 0.5f, 0.5f, getPlayer().getLocation().add(0, 1, 0), 2);
+        final int CYCLES_BEFORE_UPDATE = 4; // update every fourth cycle
+        cycleCount = (cycleCount < CYCLES_BEFORE_UPDATE) ? cycleCount + 1 : 0; // account for possible overflow
+        if(cycleCount % CYCLES_BEFORE_UPDATE == 0)
+            UtilParticles.drawParticlesWithOffset(getType().getEffect(), 0.5f, 0.3f, 0.5f, getPlayer().getLocation().add(0, 2.5, 0), 1);
     }
 }

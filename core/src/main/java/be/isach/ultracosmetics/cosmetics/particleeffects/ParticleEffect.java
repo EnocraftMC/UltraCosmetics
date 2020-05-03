@@ -22,7 +22,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
     /**
      * If true, the effect will ignore moving.
      */
-    protected boolean ignoreMove = false;
+    protected boolean stoponMove = true;
 
     public ParticleEffect(UltraCosmetics ultraCosmetics, UltraPlayer ultraPlayer, final ParticleEffectType type) {
         super(ultraCosmetics, Category.EFFECTS, ultraPlayer, type);
@@ -51,21 +51,31 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
                         && getType() != ParticleEffectType.valueOf("music")
                         && getType() != ParticleEffectType.valueOf("santahat")
                         && getType() != ParticleEffectType.valueOf("flamefairy")
-                        && getType() != ParticleEffectType.valueOf("enderaura")) {
-                    if (!isMoving() || ignoreMove)
+                        && getType() != ParticleEffectType.valueOf("enderaura")
+                        && getType() != ParticleEffectType.valueOf("moltenwalk")
+                        && getType() != ParticleEffectType.valueOf("swampmonster")) {
+                    if (!isMoving() || !stoponMove)
                         onUpdate();
                     if (isMoving()) {
                         boolean c = getType() == ParticleEffectType.valueOf("angelwings");
                         if (getType().getEffect() == Particles.REDSTONE) {
-                            if (!ignoreMove) {
+                            if (stoponMove) {
                                 for (int i = 0; i < 15; i++) {
                                     if (!c) {
-                                        getType().getEffect().display(new Particles.OrdinaryColor(255, 0, 0), getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 128);
+                                        getType().getEffect().display(new Particles.OrdinaryColor(255, 0, 0), getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 128, 0.6f);
                                     } else {
-                                        getType().getEffect().display(new Particles.OrdinaryColor(255, 255, 255), getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 128);
+                                        getType().getEffect().display(new Particles.OrdinaryColor(255, 255, 255), getPlayer().getLocation().add(MathUtils.randomDouble(-0.8, 0.8), 1 + MathUtils.randomDouble(-0.8, 0.8), MathUtils.randomDouble(-0.8, 0.8)), 128, 0.6f);
                                     }
                                 }
                             }
+                        } else if(getType() == ParticleEffectType.valueOf("inlove")) {
+                            UtilParticles.drawParticlesWithOffset(getType().getEffect(), .4f, .2f, .4f, getPlayer().getLocation().add(0, 0.5, 0), 1);
+                        } else if (getType() == ParticleEffectType.valueOf("wounded")) {
+                            if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
+                                ParticleEffectWounded.onUpdateMoving(getPlayer());
+                            }
+                        } else if(getType() == ParticleEffectType.valueOf("afk")) {
+                            return; // AFK doesn't have a moving animation, only an idle animation.
                         } else if (getType().getEffect() == Particles.ITEM_CRACK) {
                             if (UltraCosmeticsData.get().getServerVersion().compareTo(ServerVersion.v1_14_R1) >= 0) {
                                 for (int i = 0; i < 15; i++) {

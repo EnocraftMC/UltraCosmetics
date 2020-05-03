@@ -20,7 +20,7 @@ public class ParticleEffectSuperHero extends ParticleEffect {
 
     public ParticleEffectSuperHero(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, owner, ParticleEffectType.valueOf("superhero"));
-        this.ignoreMove = true;
+        this.stoponMove = false;
     }
 
     private boolean[][] shape = {
