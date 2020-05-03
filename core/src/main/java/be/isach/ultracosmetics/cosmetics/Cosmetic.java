@@ -41,8 +41,10 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
         }
     }
 
-    public void equip() { // TODO: Handle permissions and this NPC check correctly.
-        if (!owner.getBukkitPlayer().hasPermission(getType().getPermission()) && !CitizensAPI.getNPCRegistry().isNPC(Bukkit.getEntity(ownerUniqueId))) { // Check if owner has correct permissions AND IS NOT AN NPC.
+    public void equip() {
+        if (!cosmeticType.getConfigName().equalsIgnoreCase("AFK") // If AFK cosmetic, disregard this permissions check.
+                && !owner.getBukkitPlayer().hasPermission(getType().getPermission()) // Check if owner has correct permissions
+                && !CitizensAPI.getNPCRegistry().isNPC(Bukkit.getEntity(ownerUniqueId))) {  // Not an NPC
             getPlayer().sendMessage(MessageManager.getMessage("No-Permission"));
             owner.removeCosmetic(category);
             return;
@@ -59,7 +61,9 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
         } else {
             mess = mess.replace(getCategory().getChatPlaceholder(), TextUtil.filterPlaceHolder(getTypeName(), getUltraCosmetics()));
         }
-        getPlayer().sendMessage(mess);
+        if(!cosmeticType.getConfigName().equalsIgnoreCase("AFK")) { // If cosmetic is not the AFK cosmetic, send summon message.
+            getPlayer().sendMessage(mess);
+        }
 
         onEquip();
     }
@@ -74,7 +78,9 @@ public abstract class Cosmetic<T extends CosmeticType> extends BukkitRunnable im
             } else {
                 mess = mess.replace(getCategory().getChatPlaceholder(), TextUtil.filterPlaceHolder(getTypeName(), getUltraCosmetics()));
             }
-            getPlayer().sendMessage(mess);
+            if(!cosmeticType.getConfigName().equalsIgnoreCase("AFK")) { // If cosmetic is not the AFK cosmetic, send unsummon message.
+                getPlayer().sendMessage(mess);
+            }
         } catch (Exception ignored) {
         }
 

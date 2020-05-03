@@ -206,10 +206,12 @@ public class CosmeticsProfile {
 
         // Suit
         for (ArmorSlot armorSlot : ArmorSlot.values()) {
-            SuitType suitPart = enabledSuitParts.get(armorSlot);
-            if (suitPart != null && suitPart.isEnabled()
-                    && suitPart.getCategory().isEnabled())
-                suitPart.equipWithoutSaving(ultraPlayer, ultraCosmetics, armorSlot);
+            try {
+                SuitType suitPart = enabledSuitParts.get(armorSlot);
+                if (suitPart != null && suitPart.isEnabled()
+                        && suitPart.getCategory().isEnabled())
+                    suitPart.equipWithoutSaving(ultraPlayer, ultraCosmetics, armorSlot);
+            } catch (NullPointerException e) {}
         }
     }
 
