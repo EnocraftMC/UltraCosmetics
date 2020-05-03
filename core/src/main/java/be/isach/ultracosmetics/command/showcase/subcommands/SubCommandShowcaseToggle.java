@@ -35,7 +35,7 @@ public class SubCommandShowcaseToggle extends SubCommand {
     private UltraCosmetics plugin;
 
     public SubCommandShowcaseToggle(UltraCosmetics ultraCosmetics) {
-        super("Equips a cosmetic.", "ultracosmetics.*", "/ucs toggle <type> <cosmetic> [npc id]", ultraCosmetics, "toggle");
+        super("Toggles a cosmetic on an NPC.", "ultracosmetics.*", "/ucs toggle <type> <cosmetic> [npc id]", ultraCosmetics, "toggle");
         plugin = ultraCosmetics;
     }
 
