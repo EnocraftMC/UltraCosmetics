@@ -2,6 +2,7 @@ package be.isach.ultracosmetics.command;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.config.MessageManager;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -91,6 +92,14 @@ public abstract class SubCommand implements ITabCompletable {
      * @param args   The args of the command. (Includes the subcommand alias).
      */
     public abstract void onExeConsole(ConsoleCommandSender sender, String... args);
+
+    /**
+     * Called when the sub command is executed by a command block.
+     *
+     * @param sender The command block what executed the command.
+     * @param args   The args of the command. (Includes the subcommand alias).
+     */
+    public void onExeCmdBlock(BlockCommandSender sender, String... args) { notAllowed(sender); }
 
     /**
      * Sent when player doesn't have permission to the command.
