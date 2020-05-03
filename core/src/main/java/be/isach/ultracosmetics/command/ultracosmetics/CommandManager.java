@@ -33,5 +33,6 @@ public class CommandManager extends AbstractCommandManager implements CommandExe
 		registerCommand(new SubCommandClear(ultraCosmetics));
 		registerCommand(new SubCommandTreasure(ultraCosmetics));
 		registerCommand(new SubCommandRenamePet(ultraCosmetics));
+		registerCommand(new SubCommandDemo(ultraCosmetics));
 	}
 }
