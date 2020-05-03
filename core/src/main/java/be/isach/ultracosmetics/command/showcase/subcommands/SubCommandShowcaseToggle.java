@@ -91,16 +91,18 @@ public class SubCommandShowcaseToggle extends SubCommand {
             Category category = (Category) categories[0];
             try {
                 UltraPlayer other = plugin.getPlayerManager().getUltraPlayer(npc);
-                if (other.getCosmetic(category) != null) {
+                if (other.getCosmetic(category) != null && other.getCosmetic(category).getType().getConfigName().equalsIgnoreCase(cosm)) {
                     if (category == Category.SUITS) {
                         try {
                             ArmorSlot armorSlot = ArmorSlot.getByName(args[2].split(":")[1]);
                             other.removeSuit(armorSlot);
+                            sender.sendMessage(MessageManager.getMessage("Prefix") + " §3§lSuccessfully toggled off.");
                         } catch (Exception ex) {
                             sender.sendMessage(MessageManager.getMessage("Prefix") + " §c§l/ucs toggle suit <suit type:suit piece> [npc id].");
                         }
                     } else {
                         other.removeCosmetic(category);
+                        sender.sendMessage(MessageManager.getMessage("Prefix") + " §3§lSuccessfully toggled off.");
                     }
                     return;
                 }
@@ -131,13 +133,14 @@ public class SubCommandShowcaseToggle extends SubCommand {
                             ArmorSlot armorSlot = ArmorSlot.getByName(cosm.split(":")[1]);
                             SuitType suitType = SuitType.valueOf(cosm.split(":")[0]);
                             suitType.equip(other, plugin, armorSlot);
+                            sender.sendMessage(MessageManager.getMessage("Prefix") + " §3§lSuccessfully toggled on.");
                         } catch (Exception ex) {
                             sender.sendMessage(MessageManager.getMessage("Prefix") + " §c§l/ucs toggle [npc id] suit <suit type:suit piece>.");
                         }
                     } else {
                         plugin.getNPCManager().AddNPC(npc.getUniqueId());
                         cosmeticType.equip(other, plugin);
-                        sender.sendMessage(MessageManager.getMessage("Prefix") + " §3§lSuccess.");
+                        sender.sendMessage(MessageManager.getMessage("Prefix") + " §3§lSuccessfully toggled on.");
                     }
                 } catch (Exception exc) {
                     sender.sendMessage(MessageManager.getMessage("Prefix") + " §c§lInvalid NPC ID.");
