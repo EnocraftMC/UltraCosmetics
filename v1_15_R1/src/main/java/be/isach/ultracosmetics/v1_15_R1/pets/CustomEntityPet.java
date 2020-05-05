@@ -17,6 +17,7 @@ import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -76,9 +77,9 @@ public abstract class CustomEntityPet extends Pet {
                 armorStand.setCustomName(getOwner().getPetName(getType()));
             }
 
-            customEntity.getEntity().setPassenger(armorStand);
+            customEntity.getEntity().addPassenger(armorStand);
             EntitySpawningManager.setBypass(true);
-            ((org.bukkit.craftbukkit.v1_15_R1.CraftWorld) getPlayer().getWorld()).getHandle().addEntity(getCustomEntity());
+            ((org.bukkit.craftbukkit.v1_15_R1.CraftWorld) getPlayer().getWorld()).getHandle().addEntity(getCustomEntity(), CreatureSpawnEvent.SpawnReason.CUSTOM);
             EntitySpawningManager.setBypass(false);
         });
 
