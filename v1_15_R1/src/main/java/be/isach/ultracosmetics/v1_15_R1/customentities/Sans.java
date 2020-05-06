@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
+import sun.nio.ch.Util;
 
 import java.util.HashMap;
 
@@ -44,7 +45,7 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
     private ArmorStand getNewArmorStand(Location location, boolean visible, boolean mini) {
         ArmorStand as = location.getWorld().spawn(location, ArmorStand.class);
 
-        disableSlots(as);
+        disableSlots(as); // Only possible via NMS
 
         as.setBasePlate(false);
         as.setArms(true);
@@ -63,85 +64,6 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setInt("DisabledSlots", 2097151); // DisabledSlots is a bit field, disable ALL slots.
         e.getHandle().a(tag);
-    }
-
-    private int follow() { // "AI" for following the player and animations
-        return new BukkitRunnable() {
-            public void run() {
-
-                // Check owner is still valid
-                if(getOwner().getBukkitPlayer() == null) {
-                    remove();
-                    return;
-                }
-
-                ArmorStand stand = parts.get("sans");
-                Location playerLoc = getOwner().getBukkitPlayer().getLocation().add(0,1.3,0);
-                Location standLoc = stand.getLocation();
-
-                // Check owner is still in world
-                if (!getOwner().getBukkitPlayer().getWorld().equals(stand.getWorld())) {
-                    stand.teleport(playerLoc);
-                    return;
-                }
-
-                // Teleport if too far from Player
-                if (playerLoc.distance(standLoc) > 10 && getOwner().getBukkitPlayer().isOnGround()) {
-                    standLoc = playerLoc.clone().add(0.3f,0,0.3f);
-                }
-
-                // Move closer to Player
-                else if (playerLoc.distanceSquared(standLoc) >= 8) {
-                    standLoc = standLoc.add(playerLoc.toVector()
-                            .subtract(standLoc.toVector()).normalize().multiply(0.3));
-                }
-
-                // Find next height in floating animation
-                Double height = newFloatingHeight(standLoc);
-                standLoc.setY(height);
-
-                // Find next yaw
-                standLoc.setYaw(getYaw(playerLoc, standLoc));
-
-                // Teleport stand to desired location + yaw
-                stand.teleport(standLoc);
-
-                // Update head tilt
-                newHeadPosition(owner.getBukkitPlayer(), stand);
-
-                // Advance animation by one frame
-                advanceAnimationFrame();
-
-            }
-        }.runTaskTimer(plugin, 0, 1).getTaskId(); // To run the Runnable
-    }
-
-    public UltraPlayer getOwner() {
-        return owner;
-    }
-
-    private ItemStack getSkull() {
-        // This long string is the texture metadata for Sans, created with mineskin.org
-        ItemStack sansSkull = ItemFactory.createSkull("ewogICJ0aW1lc3RhbXAiIDogMTU4ODYzODYxMzUzNSwKICAicHJvZmlsZUlkIiA6ICI3ZGEyYWIzYTkzY2E0OGVlODMwNDhhZmMzYjgwZTY4ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJHb2xkYXBmZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY0OGU0YzUzNzM2ODNmYWE2MTZlYzlmYjM5NzY3YmQ2M2Q5NDgxNTlkMWJhMGQ0ZTFhYmFkMTY2MDI1MjkzOCIKICAgIH0KICB9Cn0=", ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "SansSkull");
-        return sansSkull;
-    }
-
-    // This allows Sans to turn his body to look at the Player, find next yaw
-    private float getYaw(Location playerLoc, Location standLoc) {
-        return (float) Math
-                .toDegrees(Math.atan2(playerLoc.getZ() - standLoc.getZ(), playerLoc.getX() - standLoc.getX()))
-                - 90;
-    }
-
-    // This allows Sans to tilt his head to look at the Player, find next pitch
-    private float getPitch(Location playerEyeLoc, Location standEyeLoc) {
-        final float MAX_PITCH = 15f; // Can't tilt head more than 15 degrees
-        float pitch = (float) (90f - Math.toDegrees(Math.acos(standEyeLoc.getY() - playerEyeLoc.getY())));
-        if(pitch < -1 * MAX_PITCH || (Float.isNaN(pitch) && standEyeLoc.getY() < playerEyeLoc.getY()))
-            return -1f * MAX_PITCH;
-        else if(pitch > MAX_PITCH || (Float.isNaN(pitch) && standEyeLoc.getY() > playerEyeLoc.getY()))
-            return MAX_PITCH;
-        return pitch;
     }
 
     @Override
@@ -179,6 +101,84 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         followTaskId = follow();
     }
 
+    private int follow() { // "AI" for following the player and animations
+        return new BukkitRunnable() {
+            public void run() {
+
+            // Check owner is still valid
+            if(getOwner().getBukkitPlayer() == null) {
+                remove();
+                return;
+            }
+
+            ArmorStand stand = parts.get("sans");
+            Location playerLoc = getOwner().getBukkitPlayer().getLocation().add(0,1.3,0);
+            Location standLoc = stand.getLocation();
+
+            // Check Player is still in world
+            if (!getOwner().getBukkitPlayer().getWorld().equals(stand.getWorld())) {
+                stand.teleport(playerLoc);
+                return;
+            }
+
+            // Teleport if too far from Player
+            if (playerLoc.distance(standLoc) > 10 && getOwner().getBukkitPlayer().isOnGround()) {
+                standLoc = playerLoc.clone().add(0.3f,0,0.3f);
+            }
+
+            // Move closer to Player
+            else if (playerLoc.distanceSquared(standLoc) >= 8) {
+                standLoc = standLoc.add(playerLoc.toVector()
+                        .subtract(standLoc.toVector()).normalize().multiply(0.3));
+            }
+
+            // Find next height in floating animation
+            Double height = newFloatingHeight(standLoc);
+            standLoc.setY(height);
+
+            // Find next yaw, this controls the direction the body faces
+            standLoc.setYaw(getYaw(playerLoc, standLoc));
+
+            // Teleport stand to desired location + yaw
+            stand.teleport(standLoc);
+
+            // Update head tilt + eye flame
+            newHeadPosition(owner.getBukkitPlayer(), stand);
+
+            // Advance animation by one frame
+            advanceAnimationFrame();
+
+            }
+        }.runTaskTimer(plugin, 0, 1).getTaskId(); // To run the Runnable
+    }
+
+    public UltraPlayer getOwner() {
+        return owner;
+    }
+
+    private ItemStack getSkull() {
+        // This long string is the texture metadata for Sans, created with mineskin.org
+        return ItemFactory.createSkull("ewogICJ0aW1lc3RhbXAiIDogMTU4ODYzODYxMzUzNSwKICAicHJvZmlsZUlkIiA6ICI3ZGEyYWIzYTkzY2E0OGVlODMwNDhhZmMzYjgwZTY4ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJHb2xkYXBmZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY0OGU0YzUzNzM2ODNmYWE2MTZlYzlmYjM5NzY3YmQ2M2Q5NDgxNTlkMWJhMGQ0ZTFhYmFkMTY2MDI1MjkzOCIKICAgIH0KICB9Cn0=", ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "SansSkull");
+    }
+
+    // This allows Sans to turn his body to look at the Player, find next yaw
+    private float getYaw(Location playerLoc, Location standLoc) {
+        return (float) Math
+                .toDegrees(Math.atan2(playerLoc.getZ() - standLoc.getZ(), playerLoc.getX() - standLoc.getX()))
+                - 90;
+    }
+
+    // This allows Sans to tilt his head to look at the Player, find next pitch
+    private float getPitch(Location playerEyeLoc, Location standEyeLoc) {
+        final float MAX_PITCH = 15f; // Can't tilt head more than 15 degrees
+        float pitch = (float) (90f - Math.toDegrees(Math.acos(standEyeLoc.getY() - playerEyeLoc.getY())));
+        if(pitch < -1 * MAX_PITCH || (Float.isNaN(pitch) && standEyeLoc.getY() < playerEyeLoc.getY()))
+            return -1f * MAX_PITCH;
+        else if(pitch > MAX_PITCH || (Float.isNaN(pitch) && standEyeLoc.getY() > playerEyeLoc.getY()))
+            return MAX_PITCH;
+        return pitch;
+    }
+
     private double newFloatingHeight(Location standLoc) { // Handles the floating animation height
         double freq = 1f/MAX_FRAMES;
         return standLoc.getY() + (0.05f * Math.sin(2 * Math.PI * freq * frame));
@@ -187,6 +187,22 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
     private void newHeadPosition(Player player, ArmorStand stand) { // Handles the head tilting animation
         double angle = getPitch(player.getEyeLocation(), stand.getEyeLocation());
         stand.setHeadPose(new EulerAngle(Math.toRadians(angle),0,0));
+
+        // Find neck joint of armor stand
+        Location neckJoint = stand.getEyeLocation().clone().add(0,0.3f,0);
+
+        // Find center of both eyes
+        float eyeYaw = (float) Math.toRadians(stand.getEyeLocation().getYaw() + 90);
+        float eyePitch = (float) Math.toRadians(55 + angle);
+        float eyePosX = (float) (0.33f * Math.sin(eyePitch) * Math.cos(eyeYaw));
+        float eyePosZ = (float) (0.33f * Math.sin(eyePitch) * Math.sin(eyeYaw));
+        float eyePosY = (float) (0.33f * Math.cos(eyePitch));
+        Location eyeCenterLoc = neckJoint.clone().add(eyePosX, eyePosY, eyePosZ);
+
+        // Offset to left eye
+        eyeCenterLoc.setYaw(stand.getEyeLocation().getYaw() - 90);
+        Location leftEyeLoc = eyeCenterLoc.clone().add(eyeCenterLoc.clone().getDirection().normalize().multiply(0.13f));
+        UtilParticles.drawColoredDustWithSize(0,0,255, leftEyeLoc, 0.5f);
     }
 
     private void advanceAnimationFrame() {
