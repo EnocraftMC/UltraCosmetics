@@ -26,6 +26,7 @@ public enum CustomEntities {
     public static EntityTypes<Entity> typesLocB;
     public static EntityTypes<Entity> typesLocC;
     public static EntityTypes<Entity> typesLocD;
+    public static EntityTypes<Entity> typesLocE;
 
     private String name;
     private int id;
@@ -92,6 +93,8 @@ public enum CustomEntities {
         types.put("minecraft:" + customName, types.get("minecraft:guardian"));
         EntityTypes.a<Entity> d = EntityTypes.a.a(CustomGuardian::new, EnumCreatureType.AMBIENT);
         typesLocD = IRegistry.a(IRegistry.ENTITY_TYPE, customName, d.a(customName));
+
+        // No need to register Sans, since ArmorStands don't extend EntityInsentient
 
         /**for (CustomEntities entity : values()) {
          try {

@@ -10,5 +10,9 @@ import org.bukkit.entity.Entity;
  */
 public interface IPetCustomEntity {
 
-    Entity getEntity();
+    IPetCustomEntity getEntity();
+
+    public void remove();
+
+    public void equip();
 }

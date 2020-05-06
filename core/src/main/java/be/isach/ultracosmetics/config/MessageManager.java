@@ -253,6 +253,8 @@ public class MessageManager {
         addMessage("Pets.Parrot.entity-displayname", "&l%playername%'s Parrot");
         addMessage("Pets.Spawn", "%prefix% &9You spawned %petname%");
         addMessage("Pets.Despawn", "%prefix% &9You despawned %petname%");
+        addMessage("Pets.Sans.menu-name", "&1&lSans");
+        addMessage("Pets.Sans.entity-displayname", "&lSans (%playername%)");
 
         //MORPHS
         addMessage("Morphs.Blaze.name", "&6&lBlaze");

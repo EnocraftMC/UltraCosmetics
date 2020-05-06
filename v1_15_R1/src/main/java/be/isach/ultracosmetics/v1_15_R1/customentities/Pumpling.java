@@ -24,8 +24,18 @@ public class Pumpling extends EntityZombie implements IPetCustomEntity {
         this.pet = pet;
     }
 
-    public org.bukkit.entity.Entity getEntity() {
-        return getBukkitEntity();
+    public IPetCustomEntity getEntity() {
+        return this;
+    }
+
+    @Override
+    public void remove() {
+
+    }
+
+    @Override
+    public void equip() {
+
     }
 
     @Override
