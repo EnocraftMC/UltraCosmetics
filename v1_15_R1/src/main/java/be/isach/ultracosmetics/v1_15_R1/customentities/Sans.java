@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class Sans extends EntityArmorStand implements IPetCustomEntity {
 
     private CustomEntityPet pet = null;
-    private HashMap<String, ArmorStand> parts = new HashMap<>();
+    private final HashMap<String, ArmorStand> parts = new HashMap<>();
     private final UltraPlayer owner;
     private final UltraCosmetics plugin;
     private int followTaskId;
@@ -76,7 +76,7 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         // Set Sans' Chestplate
         ItemStack sansChest = new ItemStack(Material.LEATHER_CHESTPLATE);
         LeatherArmorMeta sansChestMeta = (LeatherArmorMeta) sansChest.getItemMeta();
-        sansChestMeta.setColor(Color.fromRGB(0,0,150));
+        sansChestMeta.setColor(Color.fromRGB(30,70,180));
         sansChest.setItemMeta(sansChestMeta);
         sans.getEquipment().setChestplate(sansChest);
 
@@ -86,7 +86,7 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         // Set Sans' Boots
         ItemStack sansBoots = new ItemStack(Material.LEATHER_BOOTS);
         LeatherArmorMeta sansBootsMeta = (LeatherArmorMeta) sansBoots.getItemMeta();
-        sansBootsMeta.setColor(Color.fromRGB(255,192,203));
+        sansBootsMeta.setColor(Color.fromRGB(	243, 180, 180));
         sansBoots.setItemMeta(sansBootsMeta);
         sans.getEquipment().setBoots(sansBoots);
 
@@ -179,12 +179,14 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         return pitch;
     }
 
-    private double newFloatingHeight(Location standLoc) { // Handles the floating animation height
+    // Handles the floating animation height
+    private double newFloatingHeight(Location standLoc) {
         double freq = 1f/MAX_FRAMES;
         return standLoc.getY() + (0.05f * Math.sin(2 * Math.PI * freq * frame));
     }
 
-    private void newHeadPosition(Player player, ArmorStand stand) { // Handles the head tilting animation
+    // Handles the head tilting + eye flame
+    private void newHeadPosition(Player player, ArmorStand stand) {
         double angle = getPitch(player.getEyeLocation(), stand.getEyeLocation());
         stand.setHeadPose(new EulerAngle(Math.toRadians(angle),0,0));
 
@@ -205,17 +207,20 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         UtilParticles.drawColoredDustWithSize(0,0,255, leftEyeLoc, 0.5f);
     }
 
+    // Advance the floating animation by one frame
     private void advanceAnimationFrame() {
         if(frame == MAX_FRAMES) frame = 1;
         else frame++;
     }
 
     @Override
+    // Allows us to pass a handle to this entity
     public IPetCustomEntity getEntity() {
         return this;
     }
 
     @Override
+    // Clean up and remove the entity
     public void remove() {
         Bukkit.getScheduler().cancelTask(followTaskId);
         for (ArmorStand stand : parts.values()) {
