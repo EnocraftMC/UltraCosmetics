@@ -89,7 +89,6 @@ public final class PetType extends CosmeticMatType<Pet> {
         }
         new PetType("ultracosmetics.pets.dog", "Dog", UCMaterial.BONE, "&7&oWoof!", EntityType.WOLF, PetDog.class, ServerVersion.v1_8_R1);
         new PetType("ultracosmetics.pets.chick", "Chick", UCMaterial.EGG, "&7&oBwaaaaaaak!!", EntityType.CHICKEN, PetChick.class, ServerVersion.v1_8_R1);
-        new PetType("ultracosmetics.pets.pumpling", "Pumpling", UCMaterial.PUMPKIN, "&7&oJust a little floating pumpkin", EntityType.ZOMBIE, UltraCosmeticsData.get().getVersionManager().getPets().getPumplingClass(), ServerVersion.v1_8_R1);
         new PetType("ultracosmetics.pets.christmaself", "ChristmasElf", UCMaterial.BEACON, "&7&oI can make presents for you!", EntityType.VILLAGER, PetChristmasElf.class, ServerVersion.v1_8_R1);
         new PetType("ultracosmetics.pets.irongolem", "IronGolem", UCMaterial.IRON_INGOT, "&7&oI like flowers", EntityType.IRON_GOLEM, PetIronGolem.class, ServerVersion.v1_8_R1);
         new PetType("ultracosmetics.pets.snowman", "Snowman", UCMaterial.SNOWBALL, "&7&oPew pew pew", EntityType.SNOWMAN, PetSnowman.class, ServerVersion.v1_8_R1);
@@ -110,7 +109,7 @@ public final class PetType extends CosmeticMatType<Pet> {
         new PetType("ultracosmetics.pets.wither", "Wither", UCMaterial.WITHER_SKELETON_SKULL, "&7&oWatch out for me..", EntityType.WITHER, PetWither.class, ServerVersion.v1_8_R1);
 
         if (serverVersion.compareTo(ServerVersion.v1_15_R1) >= 0) {
-            new PetType("ultracosmetics.pets.sans", "Sans", UCMaterial.SKELETON_SKULL, "&7&oYou're gonna have a good time.", EntityType.ARMOR_STAND, UltraCosmeticsData.get().getVersionManager().getPets().getSansClass(), ServerVersion.v1_8_R1);
+            new PetType("ultracosmetics.pets.sans", "Sans", UCMaterial.SKELETON_SKULL, "&7&oIt's a beautiful day outside...", EntityType.ARMOR_STAND, UltraCosmeticsData.get().getVersionManager().getPets().getSansClass(), ServerVersion.v1_8_R1);
         }
     }
 }
