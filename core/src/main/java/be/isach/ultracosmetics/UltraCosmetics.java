@@ -222,16 +222,6 @@ public class UltraCosmetics extends JavaPlugin {
 
         if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
             this.cosmeticsProfileManager = new CosmeticsProfileManager(this);
-            /**
-             * TODO Fix this.
-             * For some reason, the mount disappears without this kind of delay.
-             */
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    cosmeticsProfileManager.initPlayers();
-                }
-            }.runTaskLater(this, 20L);
         }
 
         GeneralUtil.printPermissions(this, SettingsManager.getConfig().getBoolean("Check-For-Updates"));

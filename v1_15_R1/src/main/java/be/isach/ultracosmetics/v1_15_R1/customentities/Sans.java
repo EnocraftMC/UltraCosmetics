@@ -81,7 +81,7 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         sans.getEquipment().setChestplate(sansChest);
 
         // Set Sans' Leggings
-        sans.getEquipment().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        sans.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 
         // Set Sans' Boots
         ItemStack sansBoots = new ItemStack(Material.LEATHER_BOOTS);
@@ -193,7 +193,7 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         // Find neck joint of armor stand
         Location neckJoint = stand.getEyeLocation().clone().add(0,0.3f,0);
 
-        // Find center of both eyes
+        // Find center of both eyes (spherical to cartesian coordinates)
         float eyeYaw = (float) Math.toRadians(stand.getEyeLocation().getYaw() + 90);
         float eyePitch = (float) Math.toRadians(55 + angle);
         float eyePosX = (float) (0.33f * Math.sin(eyePitch) * Math.cos(eyeYaw));
@@ -227,4 +227,6 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
             stand.remove();
         }
     }
+
+
 }

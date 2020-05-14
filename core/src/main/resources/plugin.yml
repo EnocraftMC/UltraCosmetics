@@ -4,7 +4,7 @@ authors: [iSach, SinfulMentality, LapCheung]
 load: POSTWORLD
 main: be.isach.ultracosmetics.UltraCosmetics
 api-version: 1.13
-softdepend: [LibsDisguises, Vault, PlaceholderAPI, PlayerPoints]
+softdepend: [LibsDisguises, Vault, PlaceholderAPI, PlayerPoints, Essentials, Citizens]
 commands:
   ultracosmetics:
     aliases: [uc, cosmetics]
