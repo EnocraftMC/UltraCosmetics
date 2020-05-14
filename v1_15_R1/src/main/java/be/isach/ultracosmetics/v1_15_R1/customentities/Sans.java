@@ -14,11 +14,12 @@ import org.bukkit.craftbukkit.v1_15_R1.entity.CraftArmorStand;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
-import sun.nio.ch.Util;
 
 import java.util.HashMap;
 
@@ -40,9 +41,11 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         this.pet = pet;
         this.owner = owner;
         plugin = uc;
+        Bukkit.getPluginManager().registerEvents(this, plugin); // Allows us to listen for player interactions
     }
 
     private ArmorStand getNewArmorStand(Location location, boolean visible, boolean mini) {
+
         ArmorStand as = location.getWorld().spawn(location, ArmorStand.class);
 
         disableSlots(as); // Only possible via NMS
@@ -228,5 +231,16 @@ public class Sans extends EntityArmorStand implements IPetCustomEntity {
         }
     }
 
+    @EventHandler
+    // Handles the breaking of custom armorstand pet from a player in creative mode
+    public void onBreak(EntityDamageByEntityEvent e) {
+        if(e.getEntity() instanceof ArmorStand && parts.containsValue(e.getEntity())) {
+            if(e.getDamager() == getOwner().getBukkitPlayer()) { // EASTER EGG: The owner of sans can break him in one hit if in creative mode
+                getOwner().removePet();
+            } else {
+                e.setCancelled(true);
+            }
+        }
+    }
 
 }

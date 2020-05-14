@@ -1,6 +1,6 @@
 package be.isach.ultracosmetics.cosmetics.pets;
 
-import org.bukkit.entity.Entity;
+import org.bukkit.event.Listener;
 
 /**
  * Custom pet entity interface.
@@ -8,7 +8,7 @@ import org.bukkit.entity.Entity;
  * @author SinfulMentality
  * @since 05-06-2020
  */
-public interface IPetCustomEntity {
+public interface IPetCustomEntity extends Listener {
 
     IPetCustomEntity getEntity();
 

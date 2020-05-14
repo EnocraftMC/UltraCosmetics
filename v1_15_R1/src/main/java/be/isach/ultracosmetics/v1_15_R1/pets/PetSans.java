@@ -12,6 +12,6 @@ import be.isach.ultracosmetics.util.UCMaterial;
  */
 public class PetSans extends CustomEntityPet { //TODO: Figure out if this class is necessary?
     public PetSans(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
-        super(owner, ultraCosmetics, PetType.getByName("sans"), ItemFactory.create(UCMaterial.SKELETON_SKULL, UltraCosmeticsData.get().getItemNoPickupString()));
+        super(owner, ultraCosmetics, PetType.getByName("sans"), ItemFactory.create(UCMaterial.BONE, UltraCosmeticsData.get().getItemNoPickupString()));
     }
 }
