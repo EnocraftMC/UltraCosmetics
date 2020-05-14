@@ -10,6 +10,7 @@ import be.isach.ultracosmetics.v1_15_R1.customentities.Sans;
 import net.minecraft.server.v1_15_R1.Entity;
 import org.bukkit.Difficulty;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEntity;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -62,4 +63,10 @@ public abstract class CustomEntityPet extends Pet {
     public Entity getCustomEntity() {
         return ((CraftEntity) customEntity.getEntity()).getHandle();
     }
+
+    @Override
+    public void onPlayerTeleport(PlayerTeleportEvent event) {
+        // Custom entities handle teleport in their follow AI
+    }
+
 }
