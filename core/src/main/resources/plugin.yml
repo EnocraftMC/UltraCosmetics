@@ -228,6 +228,14 @@ permissions:
       - ultracosmetics.particleeffects.flamefairy
       - ultracosmetics.particleeffects.magicalrods
       - ultracosmetics.particleeffects.firewaves
+      - ultracosmetics.particleeffects.angelhalo
+      - ultracosmetics.particleeffects.gardennymph
+      - ultracosmetics.particleeffects.rainbowbubbles
+      - ultracosmetics.particleeffects.lavacloud
+      - ultracosmetics.particleeffects.moltenwalk
+      - ultracosmetics.particleeffects.swampmonster
+      - ultracosmetics.particleeffects.AFK
+      - ultracosmetics.particleeffects.wounded
   ultracosmetics.particleeffects.raincloud:
     default: op
   ultracosmetics.particleeffects.snowcloud:
@@ -263,6 +271,22 @@ permissions:
   ultracosmetics.particleeffects.magicalrods:
     default: op
   ultracosmetics.particleeffects.firewaves:
+    default: op
+  ultracosmetics.particleeffects.angelhalo:
+    default: op
+  ultracosmetics.particleeffects.gardennymph:
+    default: op
+  ultracosmetics.particleeffects.rainbowbubbles:
+    default: op
+  ultracosmetics.particleeffects.lavacloud:
+    default: op
+  ultracosmetics.particleeffects.moltenwalk:
+    default: op
+  ultracosmetics.particleeffects.swampmonster:
+    default: op
+  ultracosmetics.particleeffects.AFK:
+    default: op
+  ultracosmetics.particleeffects.wounded:
     default: op
   ultracosmetics.mounts.*:
     children:
