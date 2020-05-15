@@ -28,7 +28,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
@@ -222,16 +221,6 @@ public class UltraCosmetics extends JavaPlugin {
 
         if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
             this.cosmeticsProfileManager = new CosmeticsProfileManager(this);
-            /**
-             * TODO Fix this.
-             * For some reason, the mount disappears without this kind of delay.
-             */
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    cosmeticsProfileManager.initPlayers();
-                }
-            }.runTaskLater(this, 20L);
         }
 
         GeneralUtil.printPermissions(this, SettingsManager.getConfig().getBoolean("Check-For-Updates"));

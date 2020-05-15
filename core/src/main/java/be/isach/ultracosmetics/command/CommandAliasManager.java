@@ -2,25 +2,16 @@ package be.isach.ultracosmetics.command;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
-import be.isach.ultracosmetics.command.ultracosmetics.UCTabCompleter;
-import be.isach.ultracosmetics.command.ultracosmetics.subcommands.*;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.menu.Menus;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.util.MathUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Command manager for all menu aliases.
@@ -28,7 +19,7 @@ import java.util.regex.Pattern;
  * @author SinfulMentality
  * @since 04-29-20
  */
-public class CommandAliasManager implements CommandExecutor {
+public class CommandAliasManager implements CommandExecutor, TabCompleter {
 
 	private UltraCosmetics ultraCosmetics;
 
@@ -44,6 +35,16 @@ public class CommandAliasManager implements CommandExecutor {
 		this.ultraCosmetics.getServer().getPluginCommand("renamepet").setExecutor(this);
 		this.ultraCosmetics.getServer().getPluginCommand("morphs").setExecutor(this);
 		this.ultraCosmetics.getServer().getPluginCommand("buykey").setExecutor(this);
+		this.ultraCosmetics.getServer().getPluginCommand("pets").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("emotes").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("gadgets").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("effects").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("hats").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("suits").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("mounts").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("renamepet").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("morphs").setTabCompleter(this);
+		this.ultraCosmetics.getServer().getPluginCommand("buykey").setTabCompleter(this);
 	}
 
 	@Override
@@ -97,5 +98,10 @@ public class CommandAliasManager implements CommandExecutor {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return new ArrayList<>(); // returns an empty tab suggestion list
 	}
 }

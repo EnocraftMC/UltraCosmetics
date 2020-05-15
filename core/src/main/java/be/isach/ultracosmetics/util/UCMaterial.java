@@ -988,8 +988,8 @@ public enum UCMaterial {
     ZOMBIE_PIGMAN_SPAWN_EGG(57, "MONSTER_EGG"),
     ZOMBIE_SPAWN_EGG(54, "MONSTER_EGG"),
     ZOMBIE_VILLAGER_SPAWN_EGG(27, "MONSTER_EGG"),
-    ZOMBIE_WALL_HEAD(2, "SKULL", "SKULL_ITEM");
-
+    ZOMBIE_WALL_HEAD(2, "SKULL", "SKULL_ITEM"),
+    CUSTOM_SKULL_SANS(3, "ewogICJ0aW1lc3RhbXAiIDogMTU4ODYzODYxMzUzNSwKICAicHJvZmlsZUlkIiA6ICI3ZGEyYWIzYTkzY2E0OGVlODMwNDhhZmMzYjgwZTY4ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJHb2xkYXBmZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWY0OGU0YzUzNzM2ODNmYWE2MTZlYzlmYjM5NzY3YmQ2M2Q5NDgxNTlkMWJhMGQ0ZTFhYmFkMTY2MDI1MjkzOCIKICAgIH0KICB9Cn0=");
 
     /**
      * A list of material names that can be damaged.<br>
@@ -1585,8 +1585,8 @@ public enum UCMaterial {
     @Nullable
     @SuppressWarnings("deprecation")
     public ItemStack parseItem(boolean suggest) {
-        if (this == WHITE_DYE) {
-            //    return new ItemStack(Material.BONE_MEAL);
+        if(name().contains("CUSTOM_SKULL")) {
+            return ItemFactory.createSkull(this.legacy[0],"Skull");
         }
         Material material = this.parseMaterial(suggest);
         if (material == null) {

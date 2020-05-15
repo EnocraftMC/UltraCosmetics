@@ -15,14 +15,12 @@ import java.util.Map;
  */
 public enum CustomEntities {
 
-    PUMPLING("pumpling", EntityType.ZOMBIE.getTypeId(), EntityType.ZOMBIE, EntityZombie.class, Pumpling.class),
     SLIME("customslime", EntityType.SLIME.getTypeId(), EntityType.SLIME, EntitySlime.class, CustomSlime.class),
     RIDEABLE_SPIDER("rideablespider", EntityType.SPIDER.getTypeId(), EntityType.SPIDER, EntitySpider.class, RideableSpider.class),
     CUSTOM_GUARDIAN("customguardian", EntityType.GUARDIAN.getTypeId(), EntityType.GHAST, EntityGuardian.class, CustomGuardian.class);
 
     public static List<Entity> customEntities = new ArrayList<>();
 
-    public static EntityTypes<Entity> typesLocA;
     public static EntityTypes<Entity> typesLocB;
     public static EntityTypes<Entity> typesLocC;
     public static EntityTypes<Entity> typesLocD;
@@ -73,11 +71,6 @@ public enum CustomEntities {
 
         Map<String, Type<?>> types = (Map<String, Type<?>>) DataConverterRegistry.a().getSchema(DataFixUtils.makeKey(SharedConstants.getGameVersion().getWorldVersion())).findChoiceType(DataConverterTypes.ENTITY).types();
 
-        // Pumpling
-        types.put("minecraft:" + customName, types.get("minecraft:zombie"));
-        EntityTypes.a<Entity> a = EntityTypes.a.a(Pumpling::new, EnumCreatureType.AMBIENT);
-        typesLocA = IRegistry.a(IRegistry.ENTITY_TYPE, customName, a.a(customName));
-
         // Slime
         types.put("minecraft:" + customName, types.get("minecraft:slime"));
         EntityTypes.a<Entity> b = EntityTypes.a.a(CustomSlime::new, EnumCreatureType.AMBIENT);
@@ -92,6 +85,8 @@ public enum CustomEntities {
         types.put("minecraft:" + customName, types.get("minecraft:guardian"));
         EntityTypes.a<Entity> d = EntityTypes.a.a(CustomGuardian::new, EnumCreatureType.AMBIENT);
         typesLocD = IRegistry.a(IRegistry.ENTITY_TYPE, customName, d.a(customName));
+
+        // No need to register Sans, since ArmorStands don't extend EntityInsentient
 
         /**for (CustomEntities entity : values()) {
          try {

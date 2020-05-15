@@ -8,10 +8,10 @@ import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.UCMaterial;
 
 /**
- * @author RadBuilder
+ * @author SinfulMentality
  */
-public class PetPumpling extends CustomEntityPet {
-    public PetPumpling(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
-        super(owner, ultraCosmetics, PetType.getByName("pumpling"), ItemFactory.create(UCMaterial.JACK_O_LANTERN, UltraCosmeticsData.get().getItemNoPickupString()));
+public class PetSans extends CustomEntityPet {
+    public PetSans(UltraPlayer owner, UltraCosmetics ultraCosmetics) {
+        super(owner, ultraCosmetics, PetType.getByName("sans"), ItemFactory.create(UCMaterial.BONE, UltraCosmeticsData.get().getItemNoPickupString()));
     }
 }

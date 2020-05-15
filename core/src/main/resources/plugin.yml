@@ -4,7 +4,7 @@ authors: [iSach, SinfulMentality, LapCheung]
 load: POSTWORLD
 main: be.isach.ultracosmetics.UltraCosmetics
 api-version: 1.13
-softdepend: [LibsDisguises, Vault, PlaceholderAPI, PlayerPoints]
+softdepend: [LibsDisguises, Vault, PlaceholderAPI, PlayerPoints, Essentials, Citizens]
 commands:
   ultracosmetics:
     aliases: [uc, cosmetics]
@@ -356,6 +356,7 @@ permissions:
       - ultracosmetics.pets.christmaself
       - ultracosmetics.pets.mooshroom
       - ultracosmetics.pets.rename
+      - ultracosmetics.pets.sans
   ultracosmetics.pets.piggy:
     default: op
   ultracosmetics.pets.sheep:
@@ -381,6 +382,8 @@ permissions:
   ultracosmetics.pets.christmaself:
     default: op
   ultracosmetics.pets.mooshroom:
+    default: op
+  ultracosmetics.pets.sans:
     default: op
   ultracosmetics.morphs.*:
     children:
